@@ -1,0 +1,20 @@
+.InputFields{
+  color: #201E1F;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 1rem;
+}
+
+.InputStyle{
+  font:inherit;
+  border:none;
+  outline: none;
+  border-bottom: 1px solid #FFB238;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color:#49BEAA;
+}
+.InputStyle:focus{  
+  border-bottom: 1px solid #FF5E5B;
+}
