@@ -23,6 +23,7 @@ const DBString = process.env.ALLDB.replace(
   const connectionSuccess = await mongoose.connect(DBString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex:true
   });
   if (connectionSuccess) console.log("DB Connection Succeeded...🔗");
 })();
@@ -31,6 +32,8 @@ const DBString = process.env.ALLDB.replace(
 const app = require("./app");
 //Server to listen on certain port.
 const port = process.env.PORT;
+
+
 const server = app.listen(port, () => {
   console.log(`listening on port ${port}... 👂`);
 });

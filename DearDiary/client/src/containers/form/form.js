@@ -1,14 +1,17 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useCallback } from "react";
 import { useLocation } from "react-router-dom";
+import {Redirect} from 'react-router-dom';
 
 import Classes from "./form.module.css";
 import Card from "../../components/card/card";
 import Buttons from "../../components/buttons/buttons";
 import InputLabel from "../../components/inputFields/inputFields";
+import useHTTP from "../../utils/apiCalls";
 
 const formDetails = {
   email: "",
   password: "",
+  userName: "",
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -17,7 +20,7 @@ const reducer = (state, action) => {
     case "password":
       return { ...state, password: action.val };
     case "user Name":
-      return { ...state, password: action.val };
+      return { ...state, userName: action.val };
     default:
       break;
   }
@@ -25,20 +28,31 @@ const reducer = (state, action) => {
 
 const Login = () => {
   const [state, dispatch] = useReducer(reducer, formDetails);
+  const { isLoading, error, sendRequest, data } = useHTTP();
 
   const currentPath = useLocation().pathname;
   console.log(currentPath);
   let elements = ["email", "password"];
   if (currentPath === "/signup") elements.unshift("user Name");
 
-  const loginHandler=()=>{}
+  const httpCallHandler = useCallback(
+    (body) => {
+      const newBody =
+        currentPath === "login"
+          ? { email: body.email, password: body.password }
+          : { ...body };
+      sendRequest(
+        `http://localhost:1337/api/v1/users${currentPath}`,
+        "POST",
+        newBody
+      );
+    },
+    [sendRequest, currentPath]
+  );
 
-  const signupHandler=()=>{}
-
-  const submitEventHandler = (event) => {
+  const SubmitEventHandler = (event) => {
     event.preventDefault();
-    if(currentPath==='/signup') signupHandler();
-    else loginHandler();
+    httpCallHandler({ ...state });
   };
 
   const formInputs = elements.map((el) => (
@@ -52,16 +66,31 @@ const Login = () => {
     />
   ));
 
-  let formDets = (
-    <form className={Classes.Login} onSubmit={(event)=>submitEventHandler(event)}>
+  let formDets = "";
+  let errorMessage = "";
+  if (isLoading) formDets = <div>Loading...</div>;
+  if (error) errorMessage = error;
+  if(!error&&data) {return (<Redirect to='/myprofile'/>)}
+  formDets = (
+    <form
+      className={Classes.Login}
+      onSubmit={(event) => SubmitEventHandler(event)}
+    >
       {formInputs}
       <Buttons title={"Submit"} styleType={"Red"}></Buttons>
       {/* TBD: forgot password logic */}
-      {(()=>{if(currentPath==='/login')return <div style={{fontSize:'1rem',marginTop:'1rem'}}>Forgot password</div>})()}
+      {(() => {
+        if (currentPath === "/login")
+          return (
+            <div style={{ fontSize: "1rem", marginTop: "1rem" }}>
+              Forgot password
+            </div>
+          );
+      })()}
     </form>
   );
 
-  return <Card formDets={formDets}></Card>;
+  return <Card formDets={formDets} message={errorMessage}></Card>;
 };
 
 export default Login;

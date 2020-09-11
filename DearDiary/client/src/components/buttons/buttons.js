@@ -29,7 +29,7 @@ const Buttons = (props) => {
   };
 
   return (
-    <button className={btnClass.join(" ")} onClick={onClickHandler}>
+    <button className={btnClass.join(" ")} onClick={props.updateHandler?props.updateHandler:onClickHandler}>
       {props.title}
     </button>
   );

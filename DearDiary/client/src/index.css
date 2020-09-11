@@ -5,7 +5,8 @@ body {
   padding:0;
   box-sizing: border-box;
   text-align: center;
-  background-color: #FCFCFC;
+  background-color: #FCFCFC;  
+  font-size:2rem;
   color: #201E1F;
   font-family: 'Dancing Script', cursive;
 }

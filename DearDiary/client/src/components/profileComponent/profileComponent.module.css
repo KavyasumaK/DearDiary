@@ -1,0 +1,60 @@
+.ProfileComponent{
+  width: 50%;
+  display: flex;
+  margin:auto;
+  justify-content: space-between;
+}
+
+.ProfileLabel{
+  background-color: #FF5e5B;
+  height: 2rem;
+  font-size: 2rem;
+  color:#201E1F;
+  width: 25%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+.ProfileInput{
+  width:75%;
+  outline:none;
+  border: none;
+  font:inherit;  
+  height: 2rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-bottom: 0.1rem solid #FFB238;
+}
+
+
+@media(max-width:900px){
+  .ProfileComponent{
+    width: 90%;
+  }
+  .ProfileLabel{
+    font-size: 1.5rem;
+  }
+  
+  .ProfileInput{    
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+  
+}
+
+@media(max-width:600px){
+  .ProfileComponent{
+    width: 90%;
+  }
+  .ProfileLabel{
+    display: inline-block;
+    font-size: 1rem;
+  }
+  
+  .ProfileInput{    
+    display: inline-block;
+    font-size: 1rem;
+  }
+  
+}
+

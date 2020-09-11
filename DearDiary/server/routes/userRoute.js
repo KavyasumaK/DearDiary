@@ -9,14 +9,14 @@ const router = require('express').Router();
 
 const userController = require('../controller/userController');
 
-router.post('/register', userController.Register);
-router.get('/login', userController.login);  
+router.post('/signup', userController.Register);
+router.post('/login', userController.login);  
 router.get('/logout', userController.logout);
 // {TBD: forgot password}     
 
 //middleware to make sure all the rest of the paths are protected.
 router.use(userController.protectPath);
-
+router.get('/getme', userController.myProfile);
 router.patch("/updateme", userController.updateMe);
 router.patch('/updatepassword', userController.updatePassword);
 module.exports = router;

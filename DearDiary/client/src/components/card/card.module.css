@@ -1,8 +1,14 @@
 .Card{
   width:40%;  
   background-color: #FCFCFC;
-  margin:10rem auto;
+  margin:10rem auto; 
   box-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+.ErrorMessage{
+  height:2rem;
+  padding-top: 1rem;
+  color: #ff5E5B;
 }
 
 @media (max-width:650px){

@@ -1,0 +1,15 @@
+.MyProfile{
+  margin:auto;
+  margin-top:10rem;
+  color:#201E1F; 
+  padding:2rem;
+}
+
+
+@media(max-width:900px){
+  .MyProfile{
+    width:90%;
+    margin: auto;
+    margin-top:10rem;
+  }  
+}

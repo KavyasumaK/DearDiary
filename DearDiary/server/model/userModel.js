@@ -43,6 +43,7 @@ const userSchema = mongoose.Schema({
   },
   passwordResetToken: String,
   passwordResetExpires: Date,
+  aboutMe:String,
   // {TBD add reference to friends and implementation to maintain freind requests.}
 });
 

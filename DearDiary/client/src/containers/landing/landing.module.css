@@ -2,7 +2,7 @@
   height: 100vh;
   background-image: url(../../assets/images/book_pen.jpg);
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
 }
 
 .Details{   
@@ -14,10 +14,10 @@
   padding-top: 10%;
 }
 
+
 .WelcomeText{
   width:50%;
   text-align: left;
-  font-size:2rem;
   font-weight: 100 ;
 }
 

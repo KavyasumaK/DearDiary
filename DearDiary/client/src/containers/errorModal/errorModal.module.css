@@ -1,0 +1,36 @@
+.ErrorModal{
+  position: fixed;
+  z-index:1;
+  background-color: black;
+  box-sizing: border-box;
+  opacity: 0.5;
+  color: white;
+  text-align: center;
+  padding:1rem 1rem;
+  border: 1;
+  top: 25%;
+  left:25%;
+  width: 50%;
+  transition: all 0s ease-in;
+}
+
+.fadeslide-enter-active{
+  animation: openModal 2s ease-in forwards;
+}
+
+
+.ErrorLink{
+  text-decoration: none;
+  color: #EF5B5B;
+}
+
+@keyframes openModal{
+  0%{
+    opacity:0;
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity:0.5;
+    transform: translateY(0);
+  }
+}

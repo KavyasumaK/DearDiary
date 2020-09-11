@@ -29,8 +29,8 @@ const createAndSendJWT = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRES * 1000 * 24 * 60 * 60
     ),
-    // secure: req.secure || req.headers["x-forwarded-proto"] === "https",
     httpOnly: true, //To make sure cookie is not tampered with in the browser
+    secure: true,
   };
 
   // add cookie to response
@@ -127,6 +127,13 @@ exports.protectPath = catchAsync(async (req, res, next) => {
   next();
 });
 
+//get user details
+exports.myProfile = (req, res, next) => {
+  res.status(201).json({
+    user: res.locals.user,
+  });
+};
+
 //update user email, name (and photo)
 exports.updateMe = catchAsync(async (req, res, next) => {
   // console.log(req.user);
@@ -142,7 +149,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   //else update email and name only (allowed fields to be updated)
   const filteredObj = {};
   Object.keys(req.body).forEach((el) => {
-    if (el === "email" || el === "userName") filteredObj[el] = req.body[el];
+    if (el === "email" || el === "userName" || el === "aboutMe")
+      filteredObj[el] = req.body[el];
   });
   // {TBD: when logic for uploading photo is added.}
   // if (req.file) filteredObj.photo = req.file.filename;
@@ -154,10 +162,12 @@ exports.updateMe = catchAsync(async (req, res, next) => {
       runValidators: true,
     }
   );
+  const modifiedUser = { ...updatedUser._doc, _id: undefined, __v: undefined };
 
+  console.log(modifiedUser);
   res.status(200).json({
     status: "Success.",
-    user: updatedUser,
+    user: modifiedUser,
   });
 });
 
