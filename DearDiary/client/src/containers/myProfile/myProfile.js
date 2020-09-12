@@ -1,12 +1,11 @@
 import React, { useMemo, useReducer, useCallback } from "react";
-import {Redirect} from "react-router-dom";
 
-import Classes from "./myProfile.module.css";
 import useHttp from "../../utils/apiCalls";
 import LoadingIndicator from "../../components/loading/LoadingIndicator";
-import ProfileComponent from "../../components/profileComponent/profileComponent";
+import InputFields from "../../components/inputFields/inputFields";
 import Buttons from "../../components/buttons/buttons";
 import ErrorModal from "../errorModal/errorModal";
+import Card from '../../components/card/card';
 
 let initialState = {
   userName: "",
@@ -23,7 +22,7 @@ const reducer = (state, action) => {
         email: action.email,
         aboutMe: action.aboutMe,
       };
-    case "NAME":
+    case "USER NAME":
       return {
         ...state,
         userName: action.val,
@@ -33,7 +32,7 @@ const reducer = (state, action) => {
         ...state,
         email: action.val,
       };
-    case "ABOUT":
+    case "ABOUT ME":
       return {
         ...state,
         aboutMe: action.val,
@@ -43,15 +42,19 @@ const reducer = (state, action) => {
   }
 };
 
-const MyProfile = () => {
+const MyProfile = React.memo(() => {
   const { isLoading, data, error, sendRequest } = useHttp();
   const [state, dispatch] = useReducer(reducer, initialState);
+  let profileDet = "";
 
   //To avoid infinite rerenders.
   useMemo(() => {
+    console.log('making the db call');
+    //Getting the user profile from db
     sendRequest(`http://localhost:1337/api/v1/users/getme`, "GET");
   }, [sendRequest]);
 
+  //If we have data from db
   useMemo(() => {
     if (data)
       dispatch({
@@ -62,53 +65,67 @@ const MyProfile = () => {
       });
   }, [data]);
 
-  const updateDetails = useCallback(()=>{
-    sendRequest(`http://localhost:1337/api/v1/users/updateme`, "PATCH",state);
-  },[sendRequest,state]);
+  const updateDetails = useCallback(() => {
+    sendRequest(`http://localhost:1337/api/v1/users/updateme`, "PATCH", state);
+  }, [sendRequest, state]);
 
-  let profileDet = "";
-  profileDet = useMemo(()=>{return(
-    <div className={Classes.MyProfile}>
-      <ProfileComponent
-        title={"User Name"}
-        changed={(evt) =>
-          dispatch({ type: "NAME", val: evt.currentTarget.value })
-        }
-        type={"text"}
-        isRequired={true}
-        minLength={3}
-        value={state.userName||''}
-      />
-      <ProfileComponent
-        title={"Email"}
-        changed={(evt) =>
-          dispatch({ type: "EMAIL", val: evt.currentTarget.value })
-        }
-        type={"email"}
-        isRequired={true}
-        value={state.email||''}
-      />
-      <ProfileComponent
-        title={"Line about me"}
-        changed={(evt) =>
-          dispatch({ type: "ABOUT", val: evt.currentTarget.value })
-        }
-        type={"textarea"}
-        value={state.aboutMe||''}
-      />
-      <Buttons updateHandler={updateDetails} title={'Update'} styleType={"Yellow"}></Buttons>
-    </div>
-  );},[state, updateDetails]);
-  
+
+
+  profileDet = useMemo(() => {
+    return (
+      <>
+        <InputFields
+          labelName={"User Name"}
+          inputType={"user Name"}
+          require={true}
+          value={state.userName || ""}
+          changed={(evt) =>
+            dispatch({ type: "NAME", val: evt.currentTarget.value })
+          }
+          styling={"myProfile"}
+        ></InputFields>
+
+        <InputFields
+          labelName={"email"}
+          inputType={"email"}
+          require={true}
+          value={state.email || ""}
+          changed={(evt) =>
+            dispatch({ type: "EMAIL", val: evt.currentTarget.value })
+          }
+          styling={"myProfile"}
+        ></InputFields>
+
+        <InputFields
+          labelName={"About Me"}
+          inputType={"About Me"}
+          value={state.aboutMe || ""}
+          changed={(evt) =>
+            dispatch({ type: "ABOUT", val: evt.currentTarget.value })
+          }
+          styling={"myProfile"}
+        ></InputFields>
+
+        <Buttons
+          updateHandler={updateDetails}
+          title={"Update"}
+          styleType={"Yellow"}
+        ></Buttons>
+      </>
+    );
+  }, [state, updateDetails]);
+
   console.log(data);
-  if (error) profileDet = <ErrorModal show={true}/>
+  // if(!data) profileDet='';
+  if(error) console.log(error);
   if (isLoading) profileDet = <LoadingIndicator />;
 
   return (
     <>
-      {profileDet}
+      <ErrorModal show={error ? true : false} />
+      <Card cardContent={profileDet} ForProfile={true}></Card>
     </>
   );
-};
+});
 
 export default MyProfile;

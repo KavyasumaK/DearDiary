@@ -6,7 +6,6 @@ import Classes from './errorModal.module.css';
 const errorModal = (props) => {
   return (
     <CSSTransition
-      // nodeRef={nodeRef}
       mountOnEnter
       unmountOnExit
       in={props.show}

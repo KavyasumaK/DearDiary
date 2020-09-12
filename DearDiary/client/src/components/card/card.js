@@ -3,9 +3,9 @@ import React from 'react';
 import Classes from './card.module.css';
 
 const card = (props)=>{
-return <div className={Classes.Card}>
+return <div className={props.ForProfile?Classes.ForProfile:Classes.Card}>
   <div className={Classes.ErrorMessage}>{props.message}</div>
-  {props.formDets}
+  {props.cardContent}
   </div>
 }
 

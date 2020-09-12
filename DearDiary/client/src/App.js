@@ -1,25 +1,25 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 import Landing from "./containers/landing/landing";
 import Form from "./containers/form/form";
 import NotFound from "./containers/notFoundPage/notFound";
 import MyProfile from './containers/myProfile/myProfile';
+import passwordUpdate from "./containers/passwordUpdate/passwordUpdate";
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/login" component={Form} />
-          <Route path="/signup" component={Form} />
-          <Route Path="/myprofile" component={MyProfile}/>
-          <Route component={NotFound}></Route>
+          <Route exact path="/login" component={Form} />
+          <Route exact path="/signup" component={Form} />
+          <Route exact path="/myprofile" component={MyProfile}/>
+          <Route exact path="/updatepassword" component={passwordUpdate}/>
+          <Route exact path='*' component={NotFound}/>
         </Switch>
-      </BrowserRouter>
     </div>
   );
 };
 
-export default App;
+export default withRouter(App);

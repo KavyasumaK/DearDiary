@@ -1,12 +1,13 @@
 import React, { useReducer, useCallback } from "react";
-import { useLocation } from "react-router-dom";
-import {Redirect} from 'react-router-dom';
+import { useLocation, Redirect } from "react-router-dom";
 
 import Classes from "./form.module.css";
 import Card from "../../components/card/card";
 import Buttons from "../../components/buttons/buttons";
 import InputLabel from "../../components/inputFields/inputFields";
 import useHTTP from "../../utils/apiCalls";
+// import { myProfile } from "../../../../server/controller/userController";
+import MyProfile from "../myProfile/myProfile";
 
 const formDetails = {
   email: "",
@@ -26,7 +27,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Login = () => {
+const Form = () => {
   const [state, dispatch] = useReducer(reducer, formDetails);
   const { isLoading, error, sendRequest, data } = useHTTP();
 
@@ -70,7 +71,7 @@ const Login = () => {
   let errorMessage = "";
   if (isLoading) formDets = <div>Loading...</div>;
   if (error) errorMessage = error;
-  if(!error&&data) {return (<Redirect to='/myprofile'/>)}
+  if(!error&&data) {return <Redirect to='/myprofile' component={MyProfile}/>;}
   formDets = (
     <form
       className={Classes.Login}
@@ -83,14 +84,14 @@ const Login = () => {
         if (currentPath === "/login")
           return (
             <div style={{ fontSize: "1rem", marginTop: "1rem" }}>
-              Forgot password
+              Forgot password //TBD//
             </div>
           );
       })()}
     </form>
   );
 
-  return <Card formDets={formDets} message={errorMessage}></Card>;
+  return <Card cardContent={formDets} message={errorMessage}></Card>;
 };
 
-export default Login;
+export default Form;

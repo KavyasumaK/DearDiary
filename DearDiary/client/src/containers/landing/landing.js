@@ -14,7 +14,7 @@ const landing = () => {
           <br></br>
           You can keep the entries private and also share only those entries you
           want to share with your friends.
-          <br></br>Why wait? Let's start cracking!
+          <br></br>Why wait? Let's get cracking!
         </p>
         <div className={Classes.ButtonsStyle}>
           <Buttons

@@ -31,6 +31,7 @@ const createAndSendJWT = (user, statusCode, res) => {
     ),
     httpOnly: true, //To make sure cookie is not tampered with in the browser
     secure: true,
+    // sameSite:'none',
   };
 
   // add cookie to response
@@ -40,6 +41,7 @@ const createAndSendJWT = (user, statusCode, res) => {
   //send response
   res.status(statusCode).json({
     status: "Registered",
+    //To set the variable in postman.
     token: signedJWT,
     user,
   });
@@ -160,11 +162,11 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     {
       new: true, //to return updated user and not the prev values
       runValidators: true,
-    }
+    },
+    {useFindAndModify: false}
   );
   const modifiedUser = { ...updatedUser._doc, _id: undefined, __v: undefined };
 
-  console.log(modifiedUser);
   res.status(200).json({
     status: "Success.",
     user: modifiedUser,

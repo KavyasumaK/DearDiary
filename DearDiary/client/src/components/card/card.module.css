@@ -10,9 +10,17 @@
   padding-top: 1rem;
   color: #ff5E5B;
 }
+.ForProfile{
+  width:90%;
+  background-color: #FCFCFC;
+  margin:5rem auto;
+  padding:1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
 
 @media (max-width:650px){
   .Card{
     width:95%;
   }
 }
+
