@@ -1,9 +1,4 @@
-/****************************************
- * Title: userModel
- * Intial Date: 09/07/2020
- * Summary: MOngoose Schema for User.
- * Change 1:09/08/2018: added pre save and find middleware, checkPassword and changedPasswordAfter methods
- ***************************************/
+      
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");

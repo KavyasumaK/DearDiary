@@ -10,6 +10,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/userRoute');
+const diaryEntryRouter = require('./routes/diaryEntryRoute');
 const globalErrorHandler = require('./controller/errorController');
 
 const app = express();
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
 //Router level middleware
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/diaryentry',diaryEntryRouter);
 
 //{TBD unhandled Routes}
 
