@@ -1,0 +1,51 @@
+.Landing{
+  height: 100vh;
+  background-image: url(../../assets/images/book_pen.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Details{   
+  box-sizing: border-box;
+  background-color: rgb(32, 30, 31, 0.7);
+  color:#FCFCFC;
+  height:100vh;
+  padding-left:25%;
+  padding-top: 5%;
+}
+
+
+.WelcomeText{
+  width:50%;
+  text-align: left;
+  font-weight: 100 ;
+}
+
+.ButtonsStyle{
+  width:50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width:600px){
+  .Landing{
+    background-size: 600px 850px;
+  }
+  .Details{
+    padding:10%;
+  }
+  .WelcomeText{
+    width:100%;
+    font-weight: 100 ;
+  }
+}
+
+@media (max-width:900px){
+  .ButtonsStyle{
+    flex-direction: column;
+  }
+  .WelcomeText{
+    font-size: 1.2rem;
+  }
+}

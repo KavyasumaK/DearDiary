@@ -1,0 +1,81 @@
+.NavBar{
+  background-color: #49BEAA;
+  width:100vw;
+  height:3rem;
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index:2;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Logo{
+  height: 3rem;
+  margin-left:2rem;
+  width: auto;
+  outline: none;
+}
+
+.MenuItems{
+  text-decoration: none;
+   color: #201e1f;
+   margin-right: 2rem;  
+  background-color: #49BEAA;
+}
+
+.MenuItems:hover{
+  border-bottom: 0.2rem solid #FFB238;
+}
+
+.NavIcon{
+  margin: 1em;
+  width: 2rem;
+}
+.NavIcon:hover{
+  cursor: pointer;
+}
+    
+.NavIcon:after, 
+.NavIcon:before, 
+.NavIcon div {
+  background-color: #5a5156;
+  border-radius: 0.3rem;
+  content: '';
+  display: block;
+  height: 0.3rem;
+  margin: 0.25rem 0;
+  transition: all .2s ease-in-out;
+}
+
+
+
+/* .NavIcon:hover:before {
+  transform: translateY(0.5rem) rotate(135deg);
+}
+
+.NavIcon:hover:after {
+  transform: translateY(-0.5rem) rotate(-135deg);
+}
+
+.NavIcon:hover div {
+  transform: scale(0);
+} */
+
+
+.HideNavBar{
+display: none;
+}
+
+@media(max-width:499px){
+  .GreetingItems{
+    display: none;
+  }
+  .DisplayDesktopOnly{
+    display: none;
+  }
+}
+
+
+

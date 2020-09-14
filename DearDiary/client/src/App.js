@@ -1,24 +1,32 @@
 import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter,Redirect } from "react-router-dom";
 
-import Landing from "./containers/landing/landing";
-import Form from "./containers/form/form";
-import NotFound from "./containers/notFoundPage/notFound";
-import MyProfile from './containers/myProfile/myProfile';
-import passwordUpdate from "./containers/passwordUpdate/passwordUpdate";
+import Landing from "./components/landing/landing";
+import Form from "./components/auth/form/form";
+import NotFound from "./components/notFoundPage/notFound";
+import MyProfile from './components/myProfile/myProfile';
+// import passwordUpdate from "./components/passwordUpdate/passwordUpdate";
+import Logout from './components/auth/logout/logout';
+import NavBar from "./components/navBar/navBar";
+import MyHome from "./components/myHome/myHome";
 
 const App = () => {
   return (
-    <div>
+    <>
+    <NavBar/>  
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Form} />
           <Route exact path="/signup" component={Form} />
+          {/* TBD: Protected Routes */}
+          <Route exact path="/myhome" component={MyHome}></Route>
           <Route exact path="/myprofile" component={MyProfile}/>
-          <Route exact path="/updatepassword" component={passwordUpdate}/>
-          <Route exact path='*' component={NotFound}/>
+          {/* <Route exact path="/updatepassword" component={passwordUpdate}/> */}
+          <Route exact path="/logout" component={Logout}/>
+          <Route exact path='/notfound' component={NotFound}/>
+          <Redirect to="/notfound" />
         </Switch>
-    </div>
+    </>
   );
 };
 

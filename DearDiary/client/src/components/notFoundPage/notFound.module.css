@@ -1,0 +1,22 @@
+.NotFound{
+  margin-top:5rem;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  background-color: #5a5a5a;
+  font-size:1.8rem;
+}
+
+.Embarrassing{
+  width:50vw;
+  height:80vh;
+  background-image: url(../../assets/images/Embarrasing.png);
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-size: 40vw 80vh;
+}
+
+.TextStyle{
+  width:50vw;
+  font-size: 1.5rem;
+}

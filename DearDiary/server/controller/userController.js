@@ -162,8 +162,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     {
       new: true, //to return updated user and not the prev values
       runValidators: true,
-    },
-    {useFindAndModify: false}
+      useFindAndModify:false
+    }
   );
   const modifiedUser = { ...updatedUser._doc, _id: undefined, __v: undefined };
 
@@ -180,6 +180,11 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   if (!oldPassword || !newPassword)
     return next(
       new AppError("Need both old password as well as the new password", 401)
+    );
+
+    if (oldPassword === newPassword)
+    return next(
+      new AppError("New Password is same as the old password.", 401)
     );
 
   //check if oldpassword matched

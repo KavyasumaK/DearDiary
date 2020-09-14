@@ -1,0 +1,35 @@
+.Card{
+  width:40%;  
+  background-color: rgb(73, 190, 170, 0.5);
+  margin:5rem auto; 
+  margin-bottom: 2rem;
+  padding:1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+.ErrorMessage{
+  height:2rem;
+  padding-top: 1rem;
+  color: #ff5E5B;
+}
+.ForProfile{
+  width:80%;
+  height:23rem;
+}
+
+.CardTitle{
+  position: absolute;
+  top:10;
+  color:#FCFCFC;
+}
+
+@media (max-width:750px){
+  .Card{
+    margin: auto;
+    margin-top:5rem;
+    width:95%;
+    height:30rem;
+    font-size: 1rem;
+  }
+}
+

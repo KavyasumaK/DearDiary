@@ -1,0 +1,91 @@
+.InputFields{
+  color: #201E1F;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 1rem;
+}
+
+.InputStyle{
+  font:inherit;
+  border:none;
+  outline: none;
+  border-bottom: 1px solid #FFB238;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: #5a5156;
+  border-radius: 5px;
+}
+.InputStyle:focus{  
+  border-bottom: 1px solid #FF5E5B;
+}
+
+.ProfileComponent{
+  width: 60%;
+  display: flex;  
+  font-size: 2rem;
+  margin:auto;
+  justify-content: space-between;
+}
+
+.ProfileLabel{
+  background-color: #FF5e5B;
+  height: 2rem;
+  font-weight: 100;
+  color:#201E1F;
+  width: 30%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.ProfileInput{
+  width:70%;
+  outline:none;
+  border: none;
+  font:inherit;  
+  height: 2rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-bottom: 0.1rem solid #FFB238;
+  color: #5a5156;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+@media(max-width:750px){
+  .ProfileComponent{
+    width: 90%;
+    margin: 0;    
+    font-size: 1rem;
+  }
+  .ProfileLabel{
+    display: inline-block;    
+    height:3rem;
+  }
+  
+  .ProfileInput{    
+    display: inline-block;    
+    height:3rem;
+  }
+  
+}
+
+
+@media(max-width:1250px){
+  .ProfileComponent{
+    width: 90%;
+    font-size: 1.5rem;
+  }
+  .ProfileLabel{
+    width:30%;
+  }
+  
+  .ProfileInput{       
+    width:70%; 
+    display: inline-block;
+  }
+  
+}
+
