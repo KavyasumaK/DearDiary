@@ -49,9 +49,8 @@
   transition: all .2s ease-in-out;
 }
 
-
-
-/* .NavIcon:hover:before {
+/* 
+.NavIcon:hover:before {
   transform: translateY(0.5rem) rotate(135deg);
 }
 

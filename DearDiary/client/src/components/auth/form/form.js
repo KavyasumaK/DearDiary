@@ -1,11 +1,11 @@
 /****************************************
  * Title: form
- * Intial Date: 
- * Summary: Generates login, signup update form based on the path. 
+ * Intial Date:
+ * Summary: Generates login, signup update form based on the path.
  * Change 1:
  ***************************************/
 
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer, useCallback, useContext } from "react";
 import { useLocation, Redirect } from "react-router-dom";
 
 import Classes from "./form.module.css";
@@ -14,7 +14,8 @@ import Buttons from "../../../UI/buttons/buttons";
 import InputLabel from "../../../UI/inputFields/inputFields";
 import useHTTP from "../../../utils/apiCalls";
 // import { myProfile } from "../../../../server/controller/userController";
-import MyProfile from "../../myProfile/myProfile";
+import MyHome from "../../myHome/myHome";
+import { userContext } from "../../../utils/userContext";
 
 const formDetails = {
   email: "",
@@ -40,9 +41,10 @@ Default export function
 const Form = () => {
   const [state, dispatch] = useReducer(reducer, formDetails);
   const { isLoading, error, sendRequest, data } = useHTTP();
+  const getuserContext = useContext(userContext);
+
 
   const currentPath = useLocation().pathname;
-  console.log(currentPath);
   let elements = ["email", "password"];
   if (currentPath === "/signup") elements.unshift("user Name");
 
@@ -65,7 +67,8 @@ const Form = () => {
     event.preventDefault();
     httpCallHandler({ ...state });
   };
-
+  
+ 
   const formInputs = elements.map((el) => (
     <InputLabel
       key={el}
@@ -76,12 +79,17 @@ const Form = () => {
       require={true}
     />
   ));
-
+    
+  getuserContext.getMe();
   let formDets = "";
   let errorMessage = "";
   if (isLoading) formDets = <div>Loading...</div>;
   if (error) errorMessage = error;
-  if(!error&&data) {return <Redirect to='/myprofile' component={MyProfile}/>;}
+  if (!error && data) {    
+    getuserContext.setUser(data.user);
+    getuserContext.setError(false);
+    return <Redirect to="/myhome" component={MyHome} />;
+  }
   formDets = (
     <form
       className={Classes.Login}
@@ -101,7 +109,7 @@ const Form = () => {
     </form>
   );
 
-  return <Card cardContent={formDets} message={errorMessage}></Card>;
+  return <Card cardContent={formDets} message={errorMessage} />;
 };
 
 export default Form;

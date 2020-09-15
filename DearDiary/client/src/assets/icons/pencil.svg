@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" id="svg2" version="1.1" inkscape:version="0.48.4 r9939" sodipodi:docname="pencil_write_correct_color.svg">
+  <defs id="defs4">
+    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath3866">
+      <path sodipodi:type="arc" style="fill:#dd6858;fill-opacity:1;stroke:none" id="path3868" sodipodi:cx="-395.9798" sodipodi:cy="138.24356" sodipodi:rx="292.94424" sodipodi:ry="292.94424" d="m -103.03555,138.24356 a 292.94424,292.94424 0 1 1 -585.88849,0 292.94424,292.94424 0 1 1 585.88849,0 z" transform="matrix(0.15361285,0,0,0.15361285,110.82759,981.12619)"/>
+    </clipPath>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="3.959798" inkscape:cx="53.442407" inkscape:cy="43.219021" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1366" inkscape:window-height="705" inkscape:window-x="0" inkscape:window-y="26" inkscape:window-maximized="1" showguides="true" inkscape:guide-bbox="true">
+    <sodipodi:guide orientation="0,1" position="57.678572,16.964286" id="guide3859"/>
+    <sodipodi:guide orientation="1,0" position="32.829958,44.320443" id="guide3861"/>
+    <sodipodi:guide orientation="1,0" position="40.279833,37.375644" id="guide3868"/>
+    <sodipodi:guide orientation="1,0" position="50.255089,33.208765" id="guide3870"/>
+    <sodipodi:guide orientation="1,0" position="57.452426,25.885159" id="guide3872"/>
+    <sodipodi:guide orientation="0,1" position="72.573147,16.964286" id="guide3874"/>
+    <sodipodi:guide orientation="1,0" position="79.92832,36.61803" id="guide3888"/>
+    <sodipodi:guide orientation="1,0" position="90.029846,36.365492" id="guide3890"/>
+    <sodipodi:guide orientation="1,0" position="72.573147,26.958446" id="guide3892"/>
+    <sodipodi:guide orientation="1,0" position="97.416586,27.968599" id="guide3894"/>
+    <sodipodi:guide orientation="0,1" position="90.029846,31.339286" id="guide3896"/>
+    <sodipodi:guide orientation="0,1" position="95.633036,29.720582" id="guide3898"/>
+    <sodipodi:guide orientation="0,1" position="40.279833,103.125" id="guide3907"/>
+    <sodipodi:guide orientation="1,0" position="45.267857,78.125" id="guide3909"/>
+    <sodipodi:guide orientation="0,1" position="52.149125,89.082828" id="guide3913"/>
+    <sodipodi:guide orientation="0,1" position="50.255089,82.832509" id="guide3915"/>
+    <sodipodi:guide orientation="0,1" position="47.287766,97.60599" id="guide3923"/>
+  </sodipodi:namedview>
+  
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-952.36218)">
+    <g id="g3870">
+      <path sodipodi:type="arc" style="fill:#dd6858;fill-opacity:1;stroke:none" id="path3782" sodipodi:cx="-395.9798" sodipodi:cy="138.24356" sodipodi:rx="292.94424" sodipodi:ry="292.94424" d="m -103.03555,138.24356 a 292.94424,292.94424 0 1 1 -585.88849,0 292.94424,292.94424 0 1 1 585.88849,0 z" transform="matrix(0.15361285,0,0,0.15361285,110.82759,981.12619)"/>
+      <g clip-path="url(#clipPath3866)" id="g3847">
+        <g id="g3055" transform="matrix(0.72781215,0,0,0.72781215,13.665016,284.84838)">
+          <g transform="matrix(2.2677165,0,0,2.6397798,-63.421259,-1569.8632)" id="g3970">
+            <g id="g3931" transform="matrix(0.80503145,0,0,0.98876471,13.559747,19.306746)">
+              <path sodipodi:nodetypes="ccccccccccccccc" inkscape:connector-curvature="0" id="path3911" d="m 45.34375,948.71875 c -0.154716,0.0187 -0.298199,0.11439 -0.375,0.25 l -11.967025,20.39139 c -0.05301,0.0729 -0.02502,0.42512 -0.03298,0.51486 l 0,0.0937 c 2.6e-5,0.26179 0.238208,0.49997 0.5,0.5 l 23.625,0 c 0.340046,-0.018 0.878056,-1.07594 0.70737,-1.3706 L 45.84375,948.9687 c -0.09722,-0.17218 -0.303925,-0.27553 -0.5,-0.25 z m 0.0625,1.53125 10.8125,19.21875 -21.9375,0 z" style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#fbad3e;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"/>
+              <path transform="translate(0,952.36218)" inkscape:connector-curvature="0" id="path3917" d="m 40.279833,17.167491 4.988024,-6.250319 4.987232,6.250319 z" style="fill:#3b3c3d;stroke:none"/>
+              <path transform="translate(0,952.36218)" inkscape:connector-curvature="0" id="path3919" d="m 40.279833,17.167491 -2.525382,-6.250319 -3.535533,6.250319 z" style="fill:#fbad3e;fill-opacity:1;stroke:none"/>
+              <path style="fill:#fbad3e;fill-opacity:1;stroke:none" d="m 50.25509,969.52967 2.525382,-6.25032 3.535533,6.25032 z" id="path3921" inkscape:connector-curvature="0"/>
+              <path transform="translate(0,952.36218)" inkscape:connector-curvature="0" id="path3925" d="M 42.74208,2.39401 45.267857,-3.125 48.013813,2.39401 z" style="fill:#000000;stroke:none"/>
+              <path inkscape:connector-curvature="0" style="fill:#3b3c3d;fill-opacity:1;stroke:none" d="m 34.714885,969.44746 0,0.28031 -0.139111,0 0,13.26849 22.083757,0 0,-13.26849 -0.312997,0 0,-0.28031 -21.631649,0 z" id="rect3857"/>
+            </g>
+            <path sodipodi:type="arc" style="fill:#000000;fill-opacity:1;stroke:none" id="path3942" sodipodi:cx="59.030788" sodipodi:cy="9.2756739" sodipodi:rx="2.4622469" sodipodi:ry="0.56821078" d="m 61.493035,9.2756739 c 0,0.3138141 -1.102385,0.5682107 -2.462247,0.5682107 -1.359861,0 -2.462246,-0.2543966 -2.462246,-0.5682107 0,-0.3138142 1.102385,-0.5682108 2.462246,-0.5682108 1.359862,0 2.462247,0.2543966 2.462247,0.5682108 z" transform="matrix(1.2148326,0,0,1.8109403,-21.581813,946.1548)"/>
+          </g>
+          <rect style="fill:#fbad3e;fill-opacity:1;stroke:none" id="rect3029" width="13.571429" height="36.42857" x="59.285713" y="1010.5765"/>
+          <rect y="1010.9438" x="27.5" height="36.061268" width="13.571429" id="rect3027" style="fill:#fbad3e;fill-opacity:1;stroke:none"/>
+          <path transform="translate(0,952.36218)" inkscape:connector-curvature="0" id="path3031" d="M 44.446712,20.07168 43.562829,19.314065 49.876282,4.1617773 50.255089,3.1516247 56.94735,19.440335 54.421968,20.450487 z" style="fill:#464646;stroke:none;fill-opacity:1"/>
+          <path transform="translate(0,952.36218)" inkscape:connector-curvature="0" id="path3033" d="m 40.911178,58.836284 -4.798225,-15.657365 9.091373,-21.970818 5.555839,-2.525381 4.545687,2.651651 8.333758,21.59201 -4.545686,16.162441 -9.217642,-16.162441 -8.460028,16.162441 z" style="fill:#f8f6de;stroke:none"/>
+          <path transform="matrix(2.7548959,0,0,4.7804836,-112.35582,927.88604)" d="m 61.493035,9.2756739 c 0,0.3138141 -1.102385,0.5682107 -2.462247,0.5682107 -1.359861,0 -2.462246,-0.2543966 -2.462246,-0.5682107 0,-0.3138142 1.102385,-0.5682108 2.462246,-0.5682108 1.359862,0 2.462247,0.2543966 2.462247,0.5682108 z" sodipodi:ry="0.56821078" sodipodi:rx="2.4622469" sodipodi:cy="9.2756739" sodipodi:cx="59.030788" id="path3035" style="fill:#464646;fill-opacity:1;stroke:none" sodipodi:type="arc"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+	<metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<rdf:Description about="https://iconscout.com/legal#licenses" dc:title="pencil_write_correct_color" dc:description="pencil_write_correct_color" dc:publisher="Iconscout" dc:date="2017-05-19" dc:format="image/svg+xml" dc:language="en">
+				<dc:creator>
+					<rdf:Bag>
+						<rdf:li>Vignesh Oviyan</rdf:li>
+					</rdf:Bag>
+				</dc:creator>
+			</rdf:Description>
+		</rdf:RDF>
+    </metadata></svg>

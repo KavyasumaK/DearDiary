@@ -33,7 +33,9 @@ exports.getMyEntries = catchAsync(async (req, res, next) => {
 exports.getMyEntryOnDate = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   const date = new Date(req.body.date);
-  const endOfDay = new Date(new Date(date).setHours(23, 59, 59));
+  const endOfDay = new Date(new Date(date).setHours(40, 59, 59));
+  console.log(date)
+  console.log(endOfDay)
   const myEntryOnDate = await diaryEntryModel.find({ userID: userID }).find({
     created_at: {
       $gte: date,

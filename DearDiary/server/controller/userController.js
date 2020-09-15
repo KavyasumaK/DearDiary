@@ -11,6 +11,7 @@ const userModel = require("../model/userModel");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const authController=require('./authController');
 
 
 //get user details
@@ -58,36 +59,5 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
-//update user password.
-exports.updatePassword = catchAsync(async (req, res, next) => {
-  //check if body has both old and new passwords.
-  const { oldPassword, newPassword } = req.body;
-  if (!oldPassword || !newPassword)
-    return next(
-      new AppError("Need both old password as well as the new password", 401)
-    );
 
-    if (oldPassword === newPassword)
-    return next(
-      new AppError("New Password is same as the old password.", 401)
-    );
-
-  //check if oldpassword matched
-  const user = await userModel.findById(req.user._id).select("+password");
-
-  if (!(await user.checkPassword(req.body.oldPassword, user.password))) {
-    return next(new AppError("Wrong Password!", 400));
-  }
-
-  //findByIDandUpdate doesn't work as intended. JWT sent in this case is not right
-  // const newUser = await userModel.findByIdAndUpdate(
-  //   req.user._id,
-  //   { password: req.body.newPassword },
-  //   { new: true, runValidators: true }
-  // );
-
-  user.password = req.body.newPassword;
-  await user.save();
-  createAndSendJWT(user, 200, res);
-});
 //{TBD upload picture, reset password, emailing ability}

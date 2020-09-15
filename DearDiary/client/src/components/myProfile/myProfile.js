@@ -5,7 +5,7 @@
  * Change 1:
  ***************************************/
 
-import React, { useMemo, useReducer, useCallback } from "react";
+import React, { useMemo, useReducer, useCallback, useContext } from "react";
 
 import useHttp from "../../utils/apiCalls";
 import LoadingIndicator from "../../UI/loading/LoadingIndicator";
@@ -14,6 +14,8 @@ import Buttons from "../../UI/buttons/buttons";
 import ErrorModal from "../errorModal/errorModal";
 import Card from '../../UI/card/card';
 import PasswordUpdate from "../passwordUpdate/passwordUpdate";
+import { userContext } from "../../utils/userContext";
+import { Redirect } from "react-router-dom";
 
 let initialState = {
   userName: "",
@@ -53,30 +55,29 @@ const reducer = (state, action) => {
 const MyProfile = React.memo(() => {
   const { isLoading, data, error, sendRequest } = useHttp();
   const [state, dispatch] = useReducer(reducer, initialState);
-  let profileDet = "";
-
-  //To avoid infinite rerenders.
-  useMemo(() => {
-    //Getting the user profile from db
-    sendRequest(`http://localhost:1337/api/v1/users/getme`, "GET");
-  }, [sendRequest]);
+  let profileDet = "";  
+  const getuserContext = useContext(userContext); 
 
   //If we have data from db
   useMemo(() => {
-    if (data)
+    if (getuserContext.contextUser)
       dispatch({
         type: "SET",
-        userName: data.user.userName,
-        email: data.user.email,
-        aboutMe: data.user.aboutMe,
+        userName: getuserContext.contextUser.userName,
+        email: getuserContext.contextUser.email,
+        aboutMe: getuserContext.contextUser.aboutMe,
       });
-  }, [data]);
+  }, [getuserContext.contextUser]);
 
   const updateDetails = useCallback((event) => {
     event.preventDefault();
     sendRequest(`http://localhost:1337/api/v1/users/updateme`, "PATCH", state);
   }, [sendRequest, state]);
 
+  if (!error && data) {    
+    getuserContext.setUser(data.user);
+    getuserContext.setError(false);
+  }
 
 
   profileDet = useMemo(() => {
@@ -122,12 +123,14 @@ const MyProfile = React.memo(() => {
     );
   }, [state, updateDetails]);
 
-  console.log(data);
+
   // if(!data) profileDet='';
   if(error) console.log(error);
   if (isLoading) profileDet = <LoadingIndicator />;
 
-  return (
+  
+  if (!getuserContext.contextUser&&getuserContext.contextError&&!getuserContext.isLoading) return <Redirect to="/" />;
+  else return (
     <>
       <ErrorModal show={error ? true : false} />
       <Card cardContent={profileDet} ForProfile={true} cardTitle={'My Profile'}></Card>
@@ -136,4 +139,4 @@ const MyProfile = React.memo(() => {
   );
 });
 
-export default MyProfile;
+export default MyProfile; 

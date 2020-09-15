@@ -15,7 +15,7 @@
 }
 
 .fadeslide-enter-active{
-  animation: openModal 2s ease-in forwards;
+  animation: openModal 0.5s ease-in forwards;
 }
 
 

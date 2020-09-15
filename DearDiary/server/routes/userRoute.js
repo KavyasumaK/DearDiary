@@ -19,5 +19,5 @@ router.get('/logout', authController.logout);
 router.use(authController.protectPath);
 router.get('/getme', userController.myProfile);
 router.patch("/updateme", userController.updateMe);
-router.patch('/updatepassword', userController.updatePassword);
+router.patch('/updatepassword', authController.updatePassword);
 module.exports = router;

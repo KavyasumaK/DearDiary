@@ -71,6 +71,7 @@ exports.logout = (req, res) => {
   res.cookie(process.env.COOKIE_NAME, "loggedOut", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    secure: true,
   });
   res.status(200).json({
     status: "success",
@@ -120,4 +121,37 @@ exports.protectPath = catchAsync(async (req, res, next) => {
   req.user = existUser;
   res.locals.user = existUser;
   next();
+});
+
+//update user password.
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  //check if body has both old and new passwords.
+  const { oldPassword, newPassword } = req.body;
+  if (!oldPassword || !newPassword)
+    return next(
+      new AppError("Need both old password as well as the new password", 401)
+    );
+
+    if (oldPassword === newPassword)
+    return next(
+      new AppError("New Password is same as the old password.", 401)
+    );
+
+  //check if oldpassword matched
+  const user = await userModel.findById(req.user._id).select("+password");
+
+  if (!(await user.checkPassword(req.body.oldPassword, user.password))) {
+    return next(new AppError("Wrong Password!", 400));
+  }
+
+  //findByIDandUpdate doesn't work as intended. JWT sent in this case is not right
+  // const newUser = await userModel.findByIdAndUpdate(
+  //   req.user._id,
+  //   { password: req.body.newPassword },
+  //   { new: true, runValidators: true }
+  // );
+
+  user.password = req.body.newPassword;
+  await user.save();
+  createAndSendJWT(user, 200, res);
 });

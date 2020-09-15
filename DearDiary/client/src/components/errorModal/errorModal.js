@@ -16,7 +16,7 @@ const errorModal = (props) => {
       mountOnEnter
       unmountOnExit
       in={props.show}
-      timeout={3000}
+      timeout={1000}
       classNames={{
         enterActive: Classes['fadeslide-enter-active'],
       }}
