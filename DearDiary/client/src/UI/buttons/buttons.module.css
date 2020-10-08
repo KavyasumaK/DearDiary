@@ -27,6 +27,22 @@
   background-color: #FF5E5B;
 }
 
+.SmallCard{
+  margin-top:0;
+  margin-left: auto;
+  margin-right: 0.1rem;
+  border-radius: 0;
+  font-size: 1rem;
+  width:2rem;
+  height: 2rem;
+  border: none;
+  background-color: #49BEAA;
+  border-radius: 50%;
+  box-shadow: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FCFCFC;
+}
+
 @media (max-width:900px){
   .Buttons{
     font-size: 1rem;
@@ -37,5 +53,11 @@
   }
   .Yellow{
     width:70%;
+  }
+  .Green{
+    width: 70%;
+  }
+  .SmallCard{
+    width:2rem;
   }
 }

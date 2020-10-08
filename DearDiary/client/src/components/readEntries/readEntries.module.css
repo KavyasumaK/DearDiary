@@ -1,0 +1,21 @@
+.ReadEntries{
+  margin:auto;
+  margin-top: 4rem;
+  width:70%;
+}
+
+.DatePick{
+  margin-bottom: 2rem;
+  background-color: #FCFCFC;
+}
+
+.DatePick input{
+  margin: 2rem;
+  font: inherit;
+  width: 10rem;
+  font-size:1.5rem;
+  border: 1px solid grey;
+  outline: none;
+  background-color: #FCFCFC;
+  border-radius: 5px;
+}

@@ -17,14 +17,14 @@ const UserContextProvider = (props) => {
 
   const GetMeHandler = () => {
     useEffect(() => {
-      sendRequest(`http://localhost:1337/api/v1/users/getme`, "GET");
+      sendRequest(`/users/getme`, "GET");
     }, []);
   };
   useMemo(() => {
-    if (data) setUser(data.user);
-    if (error) setError(error);
+    data ? setUser(data.user) : setUser("");
+    error ? setError(error) : setError("");
   }, [data, error]);
-
+  //UserContextProvider is used to wrap the entire app in index.js file.
   return (
     <userContext.Provider
       value={{
@@ -33,7 +33,7 @@ const UserContextProvider = (props) => {
         contextError,
         isLoading,
         setUser,
-        setError        
+        setError,
       }}
     >
       {props.children}

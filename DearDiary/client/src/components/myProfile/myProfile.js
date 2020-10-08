@@ -1,6 +1,6 @@
 /****************************************
  * Title: myProfile
- * Intial Date: 
+ * Intial Date:
  * Summary: user can see and update their profile.
  * Change 1:
  ***************************************/
@@ -11,9 +11,8 @@ import useHttp from "../../utils/apiCalls";
 import LoadingIndicator from "../../UI/loading/LoadingIndicator";
 import InputFields from "../../UI/inputFields/inputFields";
 import Buttons from "../../UI/buttons/buttons";
-import ErrorModal from "../errorModal/errorModal";
-import Card from '../../UI/card/card';
-import PasswordUpdate from "../passwordUpdate/passwordUpdate";
+import Card from "../../UI/card/card";
+import PasswordUpdate from "./passwordUpdate/passwordUpdate";
 import { userContext } from "../../utils/userContext";
 import { Redirect } from "react-router-dom";
 
@@ -55,8 +54,8 @@ const reducer = (state, action) => {
 const MyProfile = React.memo(() => {
   const { isLoading, data, error, sendRequest } = useHttp();
   const [state, dispatch] = useReducer(reducer, initialState);
-  let profileDet = "";  
-  const getuserContext = useContext(userContext); 
+  let profileDet = "";
+  const getuserContext = useContext(userContext);
 
   //If we have data from db
   useMemo(() => {
@@ -69,20 +68,22 @@ const MyProfile = React.memo(() => {
       });
   }, [getuserContext.contextUser]);
 
-  const updateDetails = useCallback((event) => {
-    event.preventDefault();
-    sendRequest(`http://localhost:1337/api/v1/users/updateme`, "PATCH", state);
-  }, [sendRequest, state]);
+  const updateDetails = useCallback(
+    (event) => {
+      event.preventDefault();
+      sendRequest(`/users/updateme`, "PATCH", state);
+    },
+    [sendRequest, state]
+  );
 
-  if (!error && data) {    
+  if (!error && data) {
     getuserContext.setUser(data.user);
     getuserContext.setError(false);
   }
 
-
   profileDet = useMemo(() => {
     return (
-      <form onSubmit={event=>updateDetails(event)}>
+      <form onSubmit={(event) => updateDetails(event)}>
         <InputFields
           labelName={"User Name"}
           inputType={"user Name"}
@@ -115,28 +116,31 @@ const MyProfile = React.memo(() => {
           styling={"myProfile"}
         ></InputFields>
 
-        <Buttons
-          title={"Update"}
-          styleType={"Yellow"}
-        ></Buttons>
+        <Buttons title={"Update"} styleType={"Yellow"}></Buttons>
       </form>
     );
   }, [state, updateDetails]);
 
-
-  // if(!data) profileDet='';
-  if(error) console.log(error);
+  if (error) console.log(error);
   if (isLoading) profileDet = <LoadingIndicator />;
 
-  
-  if (!getuserContext.contextUser&&getuserContext.contextError&&!getuserContext.isLoading) return <Redirect to="/" />;
-  else return (
-    <>
-      <ErrorModal show={error ? true : false} />
-      <Card cardContent={profileDet} ForProfile={true} cardTitle={'My Profile'}></Card>
-      <PasswordUpdate/>
-    </>
-  );
+  if (
+    !getuserContext.contextUser &&
+    getuserContext.contextError &&
+    !getuserContext.isLoading
+  )
+    return <Redirect to="/" />;
+  else
+    return (
+      <>
+        <Card
+          cardContent={profileDet}
+          ForProfile={true}
+          cardTitle={"My Profile"}
+        ></Card>
+        <PasswordUpdate />
+      </>
+    );
 });
 
-export default MyProfile; 
+export default MyProfile;

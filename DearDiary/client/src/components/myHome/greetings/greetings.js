@@ -7,8 +7,7 @@ const greetings = React.memo((props) => {
     <div className={Classes.LastEntryDate}>
       <div className={Classes.DarkBackground}>
         <div className={Classes.GreetingText}>
-          Welcome back!,
-          <br /> Your last entry was on {props.createdAt}
+         {props.createdAt}
         </div>
       </div>
       </div>

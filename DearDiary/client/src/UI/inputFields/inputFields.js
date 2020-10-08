@@ -39,6 +39,7 @@ const inputFields = (props) => {
           props.changed(evt);
         }}
         minLength={minimumLength}
+        maxLength={150}
       ></input>
     </div>
   );

@@ -1,0 +1,7 @@
+.PrivacyIconSize{
+  height: 2rem;
+}
+
+.PrivacyIconSize:hover{
+  cursor: pointer;
+}

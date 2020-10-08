@@ -1,0 +1,55 @@
+.Search{
+  margin: auto;
+  margin-top: 4rem;
+  padding: 0.5rem;
+  width:50%;
+  border-radius: 5px;
+  /* background-color: rgb(73, 190, 170,0.5); */
+}
+
+.Search div{
+  align-items: center;
+}
+
+.Search input{
+  width: 60%;
+  margin-top: 1rem;
+  border: none;
+  outline: none;
+  font: inherit;
+  font-size: 1.4rem;
+  height: 1.5rem;
+  background-color: inherit;
+  border-bottom: 1px solid #49BEAA;
+  vertical-align: middle;
+}
+
+.SearchButton{
+  height: 1.6rem;
+  width: 4rem;
+  margin-left: -4rem; 
+  margin-top: 1rem;
+  background-color: #49BEAA;
+  border: none;
+  outline: none;
+  color: #FCFCFC;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.ErrorMessage{
+  color: #FF5E5B;
+  margin-top: 1rem;
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .Search{
+    width: 100%;
+  }
+  .Search input{
+    width:80%;
+  }
+}

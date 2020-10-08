@@ -51,12 +51,11 @@ const useHTTP = () => {
     try {
       const response = await Axios({
         method: method,
-        url: url,
+        url: `http://localhost:1337/api/v1${url}`,
         data: body,
         withCredentials:true,
       });
-      // console.log('response', response);
-      dispatchHttp({type:'RESPONSE', responseData: response, extra: reqExtra})
+      if(url!=='/users/logout') dispatchHttp({type:'RESPONSE', responseData: response, extra: reqExtra})
     } catch (err) {
       console.log('error', err.response);
       let errorMsg =''

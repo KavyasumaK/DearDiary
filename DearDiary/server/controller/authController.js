@@ -119,6 +119,7 @@ exports.protectPath = catchAsync(async (req, res, next) => {
   }
   //Grant the user access to paths
   req.user = existUser;
+  //made use of in userController.getMe
   res.locals.user = existUser;
   next();
 });

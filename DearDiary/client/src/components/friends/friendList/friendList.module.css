@@ -1,0 +1,22 @@
+.FriendList{  
+  width: 50%;
+  border: 1px solid #FCFCFC;
+  margin: auto;
+}
+
+.FriendListUserName{
+  color: #FF5E5B;
+  text-align: right;
+}
+
+.FriendList h3{
+  width: 90%;
+  text-align: left;
+  border-bottom: 1px solid #49BEAA;
+}
+
+@media (max-width:800px){
+  .FriendList{
+    width:90%;
+  }
+}

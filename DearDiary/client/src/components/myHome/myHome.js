@@ -7,7 +7,6 @@
 
 import React, { useContext, useMemo } from "react";
 
-import ErrorModal from "../errorModal/errorModal";
 import LoadingIndicator from "../../UI/loading/LoadingIndicator";
 
 import useHTTP from "../../utils/apiCalls";
@@ -20,44 +19,54 @@ import { Redirect } from "react-router-dom";
 const MyHome = () => {
   const { sendRequest, error, data, isLoading } = useHTTP();
   const getuserContext = useContext(userContext);
-  let created_at = "";
+  let createdAt = "";
   let dear = "";
   let entry = "";
   let privacy = "";
   let myHomeDet = "";
+  let myHomeError='';
 
   useMemo(() => {
-    sendRequest(
-      "http://localhost:1337/api/v1/diaryentry/getMyLatestEntry",
-      "GET"
-    );
+    sendRequest("/diaryentry/getMyLatestEntry", "GET");
   }, [sendRequest]);
 
   if (data) {
-    created_at = new Date(data.latestEntry.created_at).toDateString();
-    dear = data.latestEntry.dear;
-    entry = data.latestEntry.entry;
-    privacy = data.latestEntry.privacy;
+    if(data.latestEntry){
+      createdAt = ` Welcome back!, Your last entry was on ${new Date(data.latestEntry.createdAt).toDateString()}`;
+      dear = `Dear ${data.latestEntry.dear},`;
+      entry = data.latestEntry.entry;
+      privacy = data.latestEntry.privacy;
+    }else{
+      createdAt = `Welcome, Your first diary entry can be today!`;
+      dear = 'Your latest diary entry will be shown here.';
+      entry = `Why wait? let's a start!`
+      privacy ='';
+    }
   }
+if(error) myHomeError = <div style={{padding:'4rem'}}>{error}</div>;
 
   myHomeDet = useMemo(() => {
     return (
       <>
-        <Greetings createdAt={created_at} />
+        <Greetings createdAt={createdAt} />
         <LastEntry dear={dear} entry={entry} privacy={privacy} />
         <Tasks />
       </>
     );
-  }, [created_at, dear, entry, privacy]);
+  }, [createdAt, dear, entry, privacy]);
 
   if (isLoading) myHomeDet = <LoadingIndicator />;
 
-  if (!getuserContext.contextUser&&getuserContext.contextError&&!getuserContext.isLoading) return <Redirect to="/" />;
-
+  if (
+    !getuserContext.contextUser &&
+    getuserContext.contextError &&
+    !getuserContext.isLoading
+  )
+    return <Redirect to="/" />;
   else {
     return (
       <div>
-        <ErrorModal show={error ? true : false} />
+        {myHomeError}
         {myHomeDet}
       </div>
     );

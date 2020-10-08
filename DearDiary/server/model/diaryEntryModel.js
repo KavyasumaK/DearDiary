@@ -25,15 +25,16 @@ const diaryEntrySchema = mongoose.Schema(
       ],
       enum: ["private", "share"],
     },
-    //child referencing
+    
+    //referencing user's _id form User.
     userID: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
       },
-    ],
+    ]
   },
-  { timestamps: { createdAt: "created_at", updateAt: "updated_at" } }
+  { timestamps: { createdAt: "createdAt", updateAt: "updatedAt" } }
 );
 
 const DiaryEntry = mongoose.model("DiaryEntry", diaryEntrySchema);

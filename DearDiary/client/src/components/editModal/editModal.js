@@ -21,7 +21,7 @@ const errorModal = (props) => {
         enterActive: Classes['fadeslide-enter-active'],
       }}
     >
-      <div className={Classes.ErrorModal}>
+      <div >
         <p>Oops! Something went wrong,</p>
         <p>
           looks like you are not{' '}

@@ -1,0 +1,53 @@
+.CollapseController{
+  margin: auto;
+  padding:0.5rem 1rem;
+  color: #201E1f;
+  font-size: 1.5rem;
+  background-color:rgb(73, 190, 170, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  box-shadow: 5px 10px 4px rgba(0,0,0,0.5);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.CollapseController:hover{
+  background-color:rgb(73, 190, 170, 0.3);
+}
+
+.CollapsibleDIV{
+  display: none;
+}
+
+.HideCollapsibleDIV{
+  display: block;
+  padding: 1rem;
+  background-color: rgb(255, 178, 56, 0.0);
+  background-attachment: local;
+  background-image:
+      linear-gradient(to right,  rgb(255, 179, 56, 0.1), transparent 10px),
+      linear-gradient(to left,  rgb(255, 179, 56, 0.1), transparent 10px),
+      repeating-linear-gradient( rgb(255, 179, 56, 0.5),  rgb(255, 179, 56, 0.5) 30px, #ccc 30px, #ccc 31px,  rgb(255, 179, 56, 0.5) 31px);
+  line-height: 2rem;
+  text-align: left;
+}
+
+.toRetainWhiteSpace{
+  white-space: pre-wrap;
+}
+
+.LastUpdateText{
+  color:#49BEAA;
+  font-size: 1rem;
+}
+
+.EditIconSize{
+  height: 3rem;
+  float: right;
+  padding-right: 4rem;
+}
+
+.EditIconSize:hover{
+  height: 4rem;
+}

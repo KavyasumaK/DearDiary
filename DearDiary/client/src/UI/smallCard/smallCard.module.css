@@ -1,0 +1,43 @@
+.SmallCard{
+  font-size: 1.7rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 1rem auto;
+  width: 30rem;
+  height:4rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.UserPicture{
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+}
+
+.UserName{
+  color: #FF5E5B;
+  text-align: right;
+}
+
+.FlexItems{
+  display: flex;
+  justify-content: space-between;
+}
+
+.AboutMe{
+  text-align: left;
+}
+
+@media (max-width: 800px){
+  .SmallCard{
+    width:90%;
+  }
+}
+
+@media(max-width: 600px){
+  .SmallCard{
+    height: auto;
+  }
+}

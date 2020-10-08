@@ -6,31 +6,34 @@
  ***************************************/
 import React, { useState, useCallback } from "react";
 
-import useHttp from "../../utils/apiCalls";
-import InputLabel from "../../UI/inputFields/inputFields";
-import Buttons from "../../UI/buttons/buttons";
-import Card from "../../UI/card/card";
-import LoadingIndicator from '../../UI/loading/LoadingIndicator';
+import useHttp from "../../../utils/apiCalls";
+import InputLabel from "../../../UI/inputFields/inputFields";
+import Buttons from "../../../UI/buttons/buttons";
+import Card from "../../../UI/card/card";
+import LoadingIndicator from "../../../UI/loading/LoadingIndicator";
 
 const PasswordUpdate = () => {
   let [oldPassword, setOldPassword] = useState("");
   let [newPassword, setNewPassword] = useState("");
   const { isLoading, data, error, sendRequest } = useHttp();
 
-  const onUpdateHandler = useCallback((event) => {
-    event.preventDefault();
-    // {old password and new password shouldn't match handled on server side}
-    sendRequest(`http://localhost:1337/api/v1/users/updatepassword`, "PATCH", {
-      oldPassword,
-      newPassword,
-    });
-  }, [sendRequest, oldPassword, newPassword]);
+  const onUpdateHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+      // {old password and new password shouldn't match handled on server side}
+      sendRequest(`/users/updatepassword`, "PATCH", {
+        oldPassword,
+        newPassword,
+      });
+    },
+    [sendRequest, oldPassword, newPassword]
+  );
 
-  let successMessage = "";   
+  let successMessage = "";
   if (data) successMessage = <div>Password has been updated.</div>;
 
   let passwordContent = (
-    <form onSubmit={event=>onUpdateHandler(event)}>
+    <form onSubmit={(event) => onUpdateHandler(event)}>
       <InputLabel
         value={oldPassword}
         changed={(evt) => setOldPassword(evt.currentTarget.value)}
@@ -47,17 +50,19 @@ const PasswordUpdate = () => {
         require={true}
         styling={"myProfile"}
       />
-      <Buttons
-        styleType="Red"
-        title="Update"
-      ></Buttons>
+      <Buttons styleType="Red" title="Update"></Buttons>
       {successMessage}
     </form>
   );
-  if (isLoading) passwordContent=<LoadingIndicator/>
+  if (isLoading) passwordContent = <LoadingIndicator />;
 
   return (
-    <Card cardContent={passwordContent} ForProfile={true} message={error} cardTitle={'Update Password'}></Card>
+    <Card
+      cardContent={passwordContent}
+      ForProfile={true}
+      message={error}
+      cardTitle={"Update Password"}
+    ></Card>
   );
 };
 

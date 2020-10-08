@@ -1,0 +1,110 @@
+.EditModal{
+  position: fixed;
+  z-index:10;
+  background-color: rgb(32, 30, 31, 0.9);
+  box-sizing: border-box;
+  color: #FCFCFC;
+  padding: 1rem;
+  top: 0;
+  left:0; 
+  width: 100%;
+  height:100%;
+  transition: all 0s ease-in;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center; 
+  font-size: 1.7rem;
+}
+
+.EditModal textarea{
+  outline: none;
+  border: none;
+  resize: none;
+  width: 50rem;
+  max-width: 80%;
+  height: 40vh;
+  font:inherit;
+  margin:2rem auto;
+  margin-bottom: 0rem;
+  background-attachment: local;
+  background-image:
+      linear-gradient(to right,  rgb(255, 179, 56, 0.1), transparent 10px),
+      linear-gradient(to left,  rgb(255, 179, 56, 0.1), transparent 10px),
+      repeating-linear-gradient( rgb(255, 179, 56, 0.5),  rgb(255, 179, 56, 0.5) 30px, #ccc 30px, #ccc 31px,  rgb(255, 179, 56, 0.5) 31px);
+  border-radius: 3px;
+}
+
+.EditModal input{
+  font: inherit;
+  max-width: 10rem;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+}
+
+.Close{
+  font-family: Arial, Helvetica, sans-serif;
+  align-self: flex-start;
+  background-color: #49BEAA;
+  width:2rem;
+  height:2rem;
+  border-radius: 50%;
+}
+
+.Close:hover{
+  cursor: pointer;
+}
+
+.DeleteBox{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #FCFCFC;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+
+.fadeslide-enter-active{
+  animation: openModal 0.5s ease-in forwards;
+}
+
+.fadeslide-exit-active{
+  animation: closeModal 0.5s ease-in forwards;
+}
+
+
+@keyframes openModal{
+  0%{
+    opacity:0;
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity:0.99;
+    transform: translateY(0);
+  }
+}
+
+@keyframes closeModal{
+  0%{
+    opacity:0.99;
+    transform: translateY(0);
+  }
+  100%{
+    opacity:0;
+    transform: translateY(-100%);
+  }
+}
+
+@media(max-width: 600px){
+  .EditModal{
+    font-size: 1rem;
+  }
+  .Close{
+    width: 1rem;
+    height: 1rem;  
+  }
+}

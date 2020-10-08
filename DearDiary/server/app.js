@@ -4,6 +4,7 @@
  * Summary: Server and req sanitization.
  * Change 1: Added Global Error Handler
  * change2: 09/10/2020 added general cors implementation and cookie parser
+ * change3: 09/19/2020 added friends router
  ***************************************/
 const express = require('express');
 const cors = require('cors');
@@ -11,6 +12,7 @@ const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/userRoute');
 const diaryEntryRouter = require('./routes/diaryEntryRoute');
+const friendsRouter = require('./routes/friendsRoute');
 const globalErrorHandler = require('./controller/errorController');
 
 const app = express();
@@ -35,6 +37,7 @@ app.use(cookieParser());
 //Router level middleware
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/diaryentry',diaryEntryRouter);
+app.use('/api/v1/friends',friendsRouter);
 
 //{TBD unhandled Routes}
 

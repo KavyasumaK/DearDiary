@@ -25,6 +25,9 @@ const Buttons = (props) => {
     case "Red":
       btnClass.push(classes.Red);
       break;
+    case "smallCard":
+      btnClass.push(classes.SmallCard);
+      break;
     default:
       break;
   }
@@ -35,7 +38,7 @@ const Buttons = (props) => {
   };
 
   return (
-    <button className={btnClass.join(" ")} onClick={props.updateHandler?props.updateHandler:onClickHandler}>
+    <button className={btnClass.join(" ")} onClick={props.customClickHandler?props.customClickHandler:onClickHandler}>
       {props.title}
     </button>
   );
