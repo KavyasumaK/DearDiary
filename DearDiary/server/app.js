@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRoute');
 const diaryEntryRouter = require('./routes/diaryEntryRoute');
 const friendsRouter = require('./routes/friendsRoute');
+const commentRouter = require('./routes/commentRoute');
 const globalErrorHandler = require('./controller/errorController');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/diaryentry',diaryEntryRouter);
 app.use('/api/v1/friends',friendsRouter);
+app.use('/api/v1/comment',commentRouter);
 
 //{TBD unhandled Routes}
 

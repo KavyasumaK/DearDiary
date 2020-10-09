@@ -3,11 +3,11 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin: 1rem auto;
   width: 30rem;
-  height:4rem;
   padding: 0.5rem;
   border-radius: 0.2rem;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  border-left: 2px inset #FF5E5B;
 }
 
 .UserPicture{

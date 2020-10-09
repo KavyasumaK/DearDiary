@@ -25,14 +25,13 @@ const diaryEntrySchema = mongoose.Schema(
       ],
       enum: ["private", "share"],
     },
-    
     //referencing user's _id form User.
     userID: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
       },
-    ]
+    ],
   },
   { timestamps: { createdAt: "createdAt", updateAt: "updatedAt" } }
 );

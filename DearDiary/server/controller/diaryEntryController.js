@@ -44,10 +44,9 @@ exports.getMyEntries = catchAsync(async (req, res, next) => {
 exports.getMyEntryOnDate = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   // if(!req.body||!req.body.date) return this.getMyEntries(req,res,next);
-  const date = new Date(req.body.date);
-  const endOfDay = new Date(new Date(date).setHours(40, 59, 59));
-  // console.log(date)
-  // console.log(endOfDay)
+  let date = new Date(req.body.date).setHours(24, 59, 59);
+  let endOfDay = new Date(new Date(date).setHours(24, 59, 59));
+
   const myEntries = await diaryEntryModel.find({ userID: userID }).find({
     createdAt: {
       $gte: date,
@@ -104,26 +103,30 @@ exports.deleteMyEntry = catchAsync(async (req, res, next) => {
 exports.getFriendsEntries = catchAsync(async (req, res, next) => {
   //get the user
   const myEmail = req.user.email;
+  let friendsEntries = [];
   //get friendlist of the user
   const friendEmailList = (
     await friendsModel
       .find({ userEmail: myEmail })
       .select("-_id -__v -sentRequest -receivedRequest -userEmail")
   )[0].friendList;
-  
-  //map the IDs to emails
-  let friendsIDs = (
-    await userModel
-    .find({ email: { $in: friendEmailList } })
-    .select("-password -aboutMe -passwordChangedAt -__v -userName -email")
+  if (friendEmailList.length > 0) {
+    //map the IDs to emails
+    let friendsIDs = (
+      await userModel
+        .find({ email: { $in: friendEmailList } })
+        .select("-password -aboutMe -passwordChangedAt -__v -userName -email")
     ).map((obj) => obj._id);
 
-  //for each one in friendsIDs get dairy entry where entry is public
-  const friendsEntries = await diaryEntryModel
-    .find({ userID: { $in: friendsIDs }, privacy: "share" })
-    .populate("userID", "userName email")
-    .sort("-createdAt")
-    .select("-__v");
+    if (friendsIDs.length > 0) {
+      //for each one in friendsIDs get dairy entry where entry is public
+      friendsEntries = await diaryEntryModel
+        .find({ userID: { $in: friendsIDs }, privacy: "share" })
+        .populate("userID", "userName email")
+        .sort("-createdAt")
+        .select("-__v");
+    }
+  }
 
   res.status(200).json({
     status: "Success",

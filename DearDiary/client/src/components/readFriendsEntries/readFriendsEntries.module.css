@@ -1,0 +1,80 @@
+.ReadFriendsEntries{
+  margin: auto;
+  margin-top: 4rem;
+  background-color: rgb(0, 0, 0, 0.1);
+  width: 90%;
+}
+
+.Error{
+  margin: auto;
+  margin-top: 4rem;
+  color: #FF5E5B;
+}
+
+.User{
+  width:90%;
+  padding:1rem;
+  color:#ff5E5B;
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: center;
+  border-left: 3px inset;
+}
+
+.UserPicture{
+  width: 4rem;
+  height: 4rem;
+  margin-right:2rem;
+  border-radius: 50%;
+}
+
+.DearAndEntry{
+  margin: auto;
+  text-align: justify;
+  width:80%;
+  background-attachment: local;
+  background-image:
+      linear-gradient(to right,  rgb(255, 179, 56, 0.1), transparent 10px),
+      linear-gradient(to left,  rgb(255, 179, 56, 0.1), transparent 10px),
+      repeating-linear-gradient( rgb(255, 179, 56, 0.5),  rgb(255, 179, 56, 0.5) 30px, #ccc 30px, #ccc 31px,  rgb(255, 179, 56, 0.5) 31px);
+  line-height: 2rem;  
+}
+
+.Dear{
+  padding-left: 1rem;
+  color: #49BEAA;
+}
+
+.Entry{
+  white-space: pre-wrap;
+  padding-left: 2rem;
+  max-height: 10rem;
+  overflow: hidden;
+}
+.ExtendEntry{
+  max-height: 100rem;
+}
+
+.UserName:hover{
+  cursor: pointer;
+}
+
+.ReadMore{
+  color:#FCFCFC;
+  font-size: 1rem;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; 
+  padding: 0.25rem 0; 
+  background-image: linear-gradient(to bottom, transparent, rgb(0,0,0,0.7));
+}
+
+.ReadMore:hover{
+  cursor: pointer;
+}
+
+@media(max-width:600px){
+  .ReadFriendsEntries{
+    font-size: 1.5rem;
+  }
+}

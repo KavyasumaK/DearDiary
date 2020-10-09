@@ -35,7 +35,6 @@ const WriteDiary = () => {
   const { sendRequest, error, data, isLoading } = useHTTP();
   const getuserContext = useContext(userContext);
   let errorMessage = "";
-
   const diaryEntrySubmitHandler = useCallback(
     (event) => {
       event.preventDefault();

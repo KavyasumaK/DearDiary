@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
 const userModel = require("../model/userModel");
+const friendsModel = require("../model/friendsModel");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -44,6 +45,7 @@ const createAndSendJWT = (user, statusCode, res) => {
 //Function for signup/register
 exports.Register = catchAsync(async (req, res, next) => {
   const user = await userModel.create(req.body);
+  await friendsModel.create({userEmail:user.email});
   createAndSendJWT(user, 201, res);
 });
 

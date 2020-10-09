@@ -32,6 +32,7 @@ const FriendList = () => {
             aboutMe={friend.aboutMe}
             title={"✖"}
             clicked = {()=>unfriend(friend.email)}
+            redirectClicked={ {pathName: `/readfriendsentries`, email:friend.email}}
           />
       );
     });

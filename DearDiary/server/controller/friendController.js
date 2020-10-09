@@ -203,7 +203,6 @@ const updateFriendList = async (
     }
   );
   
-  console.log(newMyFriendList)
   //update friendemails friend list and sentRequest.
   await friendModel.updateOne({ userEmail: friendEmail }, friendFilter);
   return newMyFriendList;

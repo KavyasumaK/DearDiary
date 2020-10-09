@@ -18,7 +18,7 @@ const task = React.memo(()=>{
       <img alt={"Read"} src={read} className={Classes.IconSize} />
       Read or edit my dairy.
     </Link>
-    <Link to='/writediary' className={Classes.TaskLink}>
+    <Link to='/readfriendsentries' className={Classes.TaskLink}>
       <img alt={"Friends"} src={friends} className={Classes.IconSize} />
       Read friends' diary.
     </Link>

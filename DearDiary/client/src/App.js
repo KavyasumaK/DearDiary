@@ -14,6 +14,7 @@ import Friends from "./components/friends/friends";
 import Notifications from "./components/notifications/notifications";
 import { userContext } from "./utils/userContext";
 import ReadEntries from "./components/readEntries/readEntries";
+import ReadFriendsEntries from "./components/readFriendsEntries/readFriendsEntries";
 
 const App = () => {
   const getuserContext = useContext(userContext);
@@ -31,6 +32,8 @@ const App = () => {
           <Route exact path="/myprofile" component={MyProfile}/>
           <Route exact path="/writediary" component={WriteDiary}/>
           <Route exact path="/readmyentries" component={ReadEntries}/>
+          <Route exact path="/readfriendsentries" component={ReadFriendsEntries}/>
+          <Route exact path="/readfriendsentries/:email" component={ReadFriendsEntries}/>
           <Route exact path="/friends" component={Friends}/>
           <Route exact path="/notifications" component={Notifications}/>
           <Route exact path="/logout" component={Logout}/>

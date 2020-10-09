@@ -37,6 +37,10 @@
   vertical-align: middle;
 }
 
+.SearchButton:hover{
+  background-color: rgb(73, 190, 170,0.7);
+}
+
 .ErrorMessage{
   color: #FF5E5B;
   margin-top: 1rem;
