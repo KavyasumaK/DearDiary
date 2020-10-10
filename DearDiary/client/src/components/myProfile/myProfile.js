@@ -116,7 +116,7 @@ const MyProfile = React.memo(() => {
           styling={"myProfile"}
         ></InputFields>
 
-        <Buttons title={"Update"} styleType={"Yellow"}></Buttons>
+        <Buttons title={"Update"} buttonColor={"Yellow"}></Buttons>
       </form>
     );
   }, [state, updateDetails]);

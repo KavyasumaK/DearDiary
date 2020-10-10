@@ -90,7 +90,7 @@ const Form = () => {
       onSubmit={(event) => SubmitEventHandler(event)}
     >
       {formInputs}
-      <Buttons title={"Submit"} styleType={"Red"}></Buttons>
+      <Buttons title={"Submit"} styleType={"DefaultButton"} buttonColor={"Green"}></Buttons>
       {/* TBD: forgot password logic for signup*/}
       {(() => {
         if (currentPath === "/login")

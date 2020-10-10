@@ -53,7 +53,7 @@ exports.Register = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password)
-    return next(new AppError("Email and password required", 400));
+    return next(new AppError("Email and password required.", 400));
 
   const user = await userModel
     .findOne({ email: req.body.email })
@@ -61,7 +61,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   let statusCode;
   if (!user || !(await user.checkPassword(req.body.password, user.password))) {
-    return next(new AppError("Email and/or password do not match", 404));
+    return next(new AppError("Email and/or password do not match.", 404));
   } else {
     statusCode = 200;
   }
@@ -132,7 +132,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   const { oldPassword, newPassword } = req.body;
   if (!oldPassword || !newPassword)
     return next(
-      new AppError("Need both old password as well as the new password", 401)
+      new AppError("Need both old password as well as the new password.", 401)
     );
 
     if (oldPassword === newPassword)

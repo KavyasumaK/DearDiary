@@ -1,0 +1,27 @@
+.AllCommentsForEntry{
+  margin: 1rem auto;
+  padding: 0 1rem;
+  text-align: left;
+  font-size: 1.5rem;
+  width:80%;
+}
+
+.UserName{
+  color: #FF5E5B;
+  white-space: pre;
+}
+
+.UserComment{
+  max-width: 90%;
+  overflow-wrap: break-word;
+  text-align: justify;
+}
+
+.EditComment{
+  border: none;
+  outline: none;
+  font:inherit;  
+  width: 90%;
+  max-height: 6rem;
+  overflow-wrap: break-word;
+}

@@ -32,7 +32,8 @@ const SmallCard = (props) => {
             {props.special ? (
               <Buttons
                 title={"✔"}
-                styleType={"smallCard"}
+                styleType={"SmallCard"}
+                buttonColor={"Green"}
                 customClickHandler={props.addClicked}
               />
             ) : (
@@ -40,7 +41,8 @@ const SmallCard = (props) => {
             )}
             <Buttons
               title={props.title}
-              styleType={"smallCard"}
+              styleType={props.styleType}
+              buttonColor={props.btnColor}
               customClickHandler={props.clicked}
             />
           </div>

@@ -102,7 +102,7 @@ const WriteDiary = () => {
               dispatch({ type: "diaryEntryChanged", value: evt.target.value })
             }
           />
-          <Buttons title="Enter" styleType={"Green"} />
+          <Buttons title="Enter" buttonColor={"Green"} />
         </form>
       </>
     );

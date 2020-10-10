@@ -12,10 +12,22 @@ import classes from "./buttons.module.css";
 //upper case for functional component name as we are using hooks.
 const Buttons = (props) => {
   let history = useHistory();
-  const btnClass = [classes.Buttons];
+  const btnClass = [];
+
+  switch (props.styleType){
+    case "SmallCard":
+      btnClass.push(classes.SmallCard);
+      break;
+    case "Comment":
+      btnClass.push(classes.Comment);
+      break;
+    default:
+      btnClass.push(classes.DefaultButton)
+      break;
+  }
 
   //Switching style of the button based on the prop style.
-  switch (props.styleType) {
+  switch (props.buttonColor) {
     case "Yellow":
       btnClass.push(classes.Yellow);
       break;
@@ -25,8 +37,13 @@ const Buttons = (props) => {
     case "Red":
       btnClass.push(classes.Red);
       break;
-    case "smallCard":
-      btnClass.push(classes.SmallCard);
+    default:
+      break;
+  }
+
+  switch (props.hide){
+    case true:
+      btnClass.push(classes.Hide);
       break;
     default:
       break;
@@ -38,7 +55,12 @@ const Buttons = (props) => {
   };
 
   return (
-    <button className={btnClass.join(" ")} onClick={props.customClickHandler?props.customClickHandler:onClickHandler}>
+    <button
+      className={btnClass.join(" ")}
+      onClick={
+        props.customClickHandler ? props.customClickHandler : onClickHandler
+      }
+    >
       {props.title}
     </button>
   );

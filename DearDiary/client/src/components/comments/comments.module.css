@@ -1,0 +1,31 @@
+.Comments{
+  margin: 1rem auto;
+  padding: 0 1rem;
+  text-align: left;
+  font-size: 1.5rem;
+  width:80%;
+  border: 1px solid rgb(32, 30, 31, 0.5);
+}
+
+
+.PrimaryCommentInput{
+  /* padding: 1rem; */  
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 1rem;
+  border:none;
+  outline: none;
+  font: inherit;
+  background-color: inherit;
+  border-bottom: 1px inset rgb(73, 190, 170, 0.5);
+  width:100%;
+}
+
+.ButtonDisplay{
+  display: flex;
+  justify-content: right;
+}
+
+.Hide{
+  display: none;
+}

@@ -46,7 +46,7 @@ const handleCastErrorDB = (err)=>{
 
 // {TBD: Error handled only for duplicate email in userModel. To be expanded for others}
 const handleDuplicateFieldsDB = (error)=>{
-  const message = `Email already exists, Please use another one to register`;
+  const message = `Email already exists, Please use another one to register.`;
   return new AppError(message, 400);
 }
 
@@ -56,8 +56,8 @@ const handleValidationError = (error)=>{
   return new AppError(message, 400);
 }
 
-const handleJWTError=()=>new AppError('Looks like you are logged out. Please login again', 401);
-const handleTokenExpiredError = ()=>new AppError('Looks like you are logged out. Please login again', 401);
+const handleJWTError=()=>new AppError('Looks like you are logged out. Please login again.', 401);
+const handleTokenExpiredError = ()=>new AppError('Looks like you are logged out. Please login again.', 401);
 
 
 //Error handled based on prod or dev environemnt/ types of different errors possible.

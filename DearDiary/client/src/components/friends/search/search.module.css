@@ -44,7 +44,6 @@
 .ErrorMessage{
   color: #FF5E5B;
   margin-top: 1rem;
-  font-weight: bold;
   vertical-align: middle;
   text-align: center;
 }
@@ -55,5 +54,8 @@
   }
   .Search input{
     width:80%;
+  }
+  .ErrorMessage{
+    font-size: 1.5rem;
   }
 }

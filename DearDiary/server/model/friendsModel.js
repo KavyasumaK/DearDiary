@@ -30,6 +30,12 @@ const friendsSchema = mongoose.Schema({
   }
 });
 
+//To return the latest documents for all the find methods.
+friendsSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
+
 const Friend = mongoose.model("Friend", friendsSchema);
 
 module.exports = Friend;

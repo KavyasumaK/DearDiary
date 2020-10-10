@@ -51,3 +51,8 @@
 .EditIconSize:hover{
   height: 4rem;
 }
+
+.CommentsBackground{
+  background-color: rgba(255, 211, 139);
+  padding:1rem;
+}

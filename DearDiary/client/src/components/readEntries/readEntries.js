@@ -3,7 +3,7 @@ import React, { useMemo, useRef, useState } from "react";
 import Classes from "./readEntries.module.css";
 import useHTTP from "../../utils/apiCalls";
 import LoadingIndicator from "../../UI/loading/LoadingIndicator";
-import GetEntries from "./showEntries/showEntries";
+import GetEntries from "./getEntries/getEntries";
 import EditModal from "./editModal/editModal"; 
 
 //Setting maximun date allowed in the date picker to today.

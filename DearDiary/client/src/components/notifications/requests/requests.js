@@ -40,7 +40,9 @@ const Requests = () => {
             userPicture={defaultUser}
             userName={request.userName}
             aboutMe={request.aboutMe}
-            title={"✖"}
+            title={"✖"}            
+            styleType={"SmallCard"}
+            btnColor={"Red"}
             special={true}
             clicked={()=>rescindRequest(request.email, 'received')}            
             addClicked = {()=>addFriend(request.email)}
@@ -57,6 +59,8 @@ const Requests = () => {
             userName={request.userName}
             aboutMe={request.aboutMe}
             title={"✖"}
+            styleType={"SmallCard"}
+            btnColor={"Red"}
             clicked={()=>rescindRequest(request.email, 'sent')}
           />
         );

@@ -31,6 +31,8 @@ const FriendList = () => {
             userName={friend.userName}
             aboutMe={friend.aboutMe}
             title={"✖"}
+            styleType={"SmallCard"}
+            btnColor={"Red"}
             clicked = {()=>unfriend(friend.email)}
             redirectClicked={ {pathName: `/readfriendsentries`, email:friend.email}}
           />

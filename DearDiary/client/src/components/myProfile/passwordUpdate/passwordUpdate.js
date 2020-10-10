@@ -50,7 +50,7 @@ const PasswordUpdate = () => {
         require={true}
         styling={"myProfile"}
       />
-      <Buttons styleType="Red" title="Update"></Buttons>
+      <Buttons buttonColor="Red" title="Update"></Buttons>
       {successMessage}
     </form>
   );

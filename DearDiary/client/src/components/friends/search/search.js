@@ -34,6 +34,8 @@ const Search = () => {
         userName={data.friendDetails.userName}
         aboutMe={data.friendDetails.aboutMe}
         userPicture={defaultUser}
+        styleType={"SmallCard"}
+        btnColor={"Yellow"}
         title={"📨"}
         clicked={() => sendFriendRequest()}
       />
@@ -49,7 +51,7 @@ const Search = () => {
         <input
           onKeyDown={(evt) => (evt.key === "Enter" ? searchFriend() : "")}
           onChange={(evt) => setSearchTerm(evt.target.value)}
-          placeholder={"Search..."}
+          placeholder={"Search... (by email)"}
         />
         <button onClick={() => searchFriend()} className={Classes.SearchButton}>{"🔍"}</button>
       </div>

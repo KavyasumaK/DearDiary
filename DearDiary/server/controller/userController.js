@@ -30,7 +30,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password)
     return next(
       new AppError(
-        "You cannot update password here. Please try through updatepassword",
+        "You cannot update password here. Please try through updatepassword.",
         401
       )
     );

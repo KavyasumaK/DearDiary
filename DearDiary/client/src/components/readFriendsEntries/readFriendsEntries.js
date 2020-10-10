@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 // import FriendEntry from "./friendEntry/friendEntry";
 import LoadingIndicator from "../../UI/loading/LoadingIndicator";
+import Comments from "../comments/comments";
 import useHTTP from "../../utils/apiCalls";
 import Classes from "./readFriendsEntries.module.css";
 import defaultUser from "../../assets/images/DefaultUser.png";
@@ -19,9 +20,9 @@ const ReadFriendsEntries = () => {
   }, [sendRequest]);
 
   const toggleShort = (ID) => {
-    setShort((myEntriesState) => ({
-      ...myEntriesState,
-      settings: myEntriesState.settings.map((item) =>
+    setShort((short) => ({
+      ...short,
+      settings: short.settings.map((item) =>
         item.id === ID ? { ...item, open: !item.open } : item
       ),
     }));
@@ -101,7 +102,7 @@ const ReadFriendsEntries = () => {
                 </p>
               </div>
             </div>
-            <div>Comments</div>
+            <Comments entryID={entry._id}/>
           </div>
         );
       }

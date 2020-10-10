@@ -14,14 +14,15 @@ exports.insertComment = catchAsync(async (req, res, next) => {
   if (!userID || !entryID)
     return next(new AppError("userID and entryID are required", 401));
   if (!comment || !comment.trim())
-    return next(new AppError("Comment is required", 401));
+    return next(new AppError("Comment is required.", 401));
   const userExist = await userModel.findById(userID);
   const entryExist = await diaryEntryModel.findById(
     mongoose.Types.ObjectId(entryID)
   );
   if (!userExist || !entryExist)
-    return next(new AppError("User or entry not found", 401));
-  const newComment = await commentModel.create({ userID, entryID, comment });
+    return next(new AppError("User or entry not found.", 401));
+    // {TBD make sure the person commenting on the doc is a friend to whom entry belongs to}
+  const newComment = await (await commentModel.create({ userID, entryID, comment }));
 
   res.status(200).json({
     status: "Success",
@@ -32,7 +33,7 @@ exports.insertComment = catchAsync(async (req, res, next) => {
 exports.getComments = catchAsync(async (req, res, next) => {
   let filter = {};
   if (req.body && req.body.entryID) filter = { entryID: req.body.entryID };
-  const allComments = await commentModel.find(filter);
+  const allComments = await commentModel.find(filter).populate("userID", "userName _id").sort("-createdAt");
   res.status(200).json({
     status: "Success",
     allComments,
@@ -45,7 +46,7 @@ exports.updateComment = catchAsync(async (req, res, next) => {
   let comment = req.body.comment;
   if (!commentID || !comment)
     return next(
-      new AppError("Comment ID and entry are required to update comment", 401)
+      new AppError("Comment ID and entry are required to update comment.", 401)
     );
   const updatedComment = await commentModel.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(commentID), userID: userID },
@@ -57,25 +58,21 @@ exports.updateComment = catchAsync(async (req, res, next) => {
     }
   );
   if (!updatedComment)
-    return next(new AppError(`Could not update comment`, 401));
-  res.status(200).json({
-    status: "Success",
-    updatedComment,
-  });
+    return next(new AppError(`Could not update comment.`, 401));
+ else this.getComments(req,res,next);
 });
 
 exports.deleteComment = catchAsync(async (req, res, next) => {
   let commentID = req.body.commentID;
   let userID = req.user._id;
   if (!commentID)
-    return next(new AppError("Comment ID required to delete comment", 401));
+    return next(new AppError("Comment ID required to delete comment.", 401));
   const deletedComment = await commentModel.findOneAndDelete({
     _id: mongoose.Types.ObjectId(commentID),
     userID: userID,
   });
-
-  res.status(200).json({
-    status: "Success",
-    deletedComment,
-  });
+  if(!deletedComment)  return next(new AppError("Comment could not be deleted.", 401));
+  else{
+    this.getComments(req,res,next);
+  }
 });

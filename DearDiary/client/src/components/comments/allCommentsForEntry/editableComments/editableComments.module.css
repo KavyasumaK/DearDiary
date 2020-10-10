@@ -1,0 +1,14 @@
+
+.Hide{
+  display: none;
+}
+
+
+.EditComment{
+  border: none;
+  outline: none;
+  font:inherit;  
+  width: 90%;
+  max-height: 6rem;
+  overflow-wrap: break-word;
+}

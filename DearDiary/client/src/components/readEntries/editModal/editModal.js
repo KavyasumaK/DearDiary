@@ -66,7 +66,7 @@ const EditModal = (props) => {
         />
         <Buttons
           title={"Update"}
-          styleType={"Green"}
+          buttonColor={"Green"}
           customClickHandler={() => props.updateEntry(intialStateElements)}
         />
         <label className={Classes.DeleteBox}>
@@ -82,7 +82,7 @@ const EditModal = (props) => {
           />
           <Buttons
             title={"Delete"}
-            styleType={"Red"}
+            buttonColor={"Red"}
             customClickHandler={() =>
               props.deleteEntry(
                 intialStateElements.deleteConfirm,

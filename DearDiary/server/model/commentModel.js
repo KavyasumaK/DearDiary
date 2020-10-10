@@ -6,23 +6,32 @@
  ***************************************/
 const mongoose = require("mongoose");
 
-const commentSchema = mongoose.Schema({
-  comment: {
-    type: String,
-    required: [true, "To post a comment is required"],
+const commentSchema = mongoose.Schema(
+  {
+    comment: {
+      type: String,
+      required: [true, "To post a comment is required"],
+    },
+    userID: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
+    entryID: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "DiaryEntry",
+      },
+    ],
   },
-  userID: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
-  entryID: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "DiaryEntry",
-    },
-  ],
+  { timestamps: { createdAt: "createdAt" } }
+);
+
+//To return the latest documents for all the find methods.
+commentSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
 });
 
 const Comment = mongoose.model("Comment", commentSchema);

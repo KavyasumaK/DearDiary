@@ -61,20 +61,20 @@ exports.findFriend = catchAsync(async (req, res, next) => {
   if (!friendEmail)
     return next(
       new AppError(
-        "We require your friends email ID to send a friend request",
+        "We require your friends email ID to send a friend request.",
         401
       )
     );
 
   if (friendEmail.toLowerCase() === req.user.email.toLowerCase())
-    return next(new AppError("Your search email is your email", 401));
+    return next(new AppError("Your search email is your email.", 401));
 
   let friendDetails = await userModel
     .findOne({ email: friendEmail.toLowerCase() })
     .select("-_id -__v -passwordChangedAt");
 
   if (!friendDetails)
-    return next(new AppError("Your friend is not a dear diary user", 401));
+    return next(new AppError("Your friend is not a dear diary user.", 401));
 
   req.friendDetails = friendDetails;
   next();
@@ -137,7 +137,7 @@ exports.sendFriendRequest = catchAsync(async (req, res, next) => {
           : usersExist[0].receivedRequest;
     } else {
       return next(
-        new AppError("You are already friends with this person", 400)
+        new AppError("You are already friends with this person.", 400)
       );
     }
   }
@@ -169,7 +169,7 @@ exports.sendFriendRequest = catchAsync(async (req, res, next) => {
 
 const getBothUserAndFriend = async (req, res, next) => {
   if (!req.body.email || req.body.email === req.user.email)
-    return next(new AppError("Friends email is invalid", 401));
+    return next(new AppError("Friends email is invalid.", 401));
   const requestExist = await friendModel.find({
     userEmail: {
       $in: [req.body.email.toLowerCase(), req.user.email.toLowerCase()],

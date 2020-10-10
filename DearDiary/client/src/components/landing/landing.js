@@ -26,12 +26,14 @@ const landing = () => {
         <div className={Classes.ButtonsStyle}>
           <Buttons
             title={"Login"}
-            styleType={"Green"}
+            styleType={"DefaultButton"}            
+            buttonColor={"Green"}
             redirectClicked={"/login"}
           />
           <Buttons
             title={"Signup"}
-            styleType={"Green"}
+            styleType={"DefaultButton"}
+            buttonColor={"Green"}
             redirectClicked={"/signup"}
           />
         </div>

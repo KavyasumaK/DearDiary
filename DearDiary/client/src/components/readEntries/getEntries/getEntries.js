@@ -1,8 +1,9 @@
 import React from "react";
 
-import Classes from "./showEntries.module.css";
+import Classes from "./getEntries.module.css";
 import PrivacyIcons from "../../../UI/privacyIcons/privacyIcons";
 import Edit_red from "../../../assets/images/Edit_red.svg";
+import Comments from "../../comments/comments";
 
 const GetEntries = (props) => {
   const { settings } = props.myEntriesState;
@@ -45,6 +46,9 @@ const GetEntries = (props) => {
                 ? new Date(el.updatedAt).toDateString()
                 : new Date(el.updated_at).toDateString()}
             </div>
+            <div className={Classes.CommentsBackground}>
+            <Comments entryID={el._id}/>
+              </div>            
           </div>
         </div>
       );

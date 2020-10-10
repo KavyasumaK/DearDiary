@@ -36,6 +36,12 @@ const diaryEntrySchema = mongoose.Schema(
   { timestamps: { createdAt: "createdAt", updateAt: "updatedAt" } }
 );
 
+//To return the latest documents for all the find methods.
+diaryEntrySchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
+
 const DiaryEntry = mongoose.model("DiaryEntry", diaryEntrySchema);
 
 module.exports = DiaryEntry;
