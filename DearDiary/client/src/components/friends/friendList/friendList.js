@@ -3,7 +3,6 @@ import React, { useCallback, useMemo } from "react";
 import useHttp from "../../../utils/apiCalls";
 import LoadingIndicator from "../../../UI/loading/LoadingIndicator";
 import Classes from "./friendList.module.css";
-import defaultUser from "../../../assets/images/DefaultUser.png";
 import SmallCard from "../../../UI/smallCard/smallCard";
 
 const FriendList = () => {
@@ -27,7 +26,7 @@ const FriendList = () => {
       return (
           <SmallCard
             key={friend._id}           
-            userPicture={defaultUser}
+            userPicture={friend.profilePicture}
             userName={friend.userName}
             aboutMe={friend.aboutMe}
             title={"✖"}

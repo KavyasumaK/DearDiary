@@ -49,6 +49,10 @@
   transition: all .2s ease-in-out;
 }
 
+.PictureBurger{
+  display: flex;
+}
+
 /* 
 .NavIcon:hover:before {
   transform: translateY(0.5rem) rotate(135deg);

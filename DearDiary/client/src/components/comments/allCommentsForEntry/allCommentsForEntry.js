@@ -93,7 +93,7 @@ const AllCommentsForEntry = React.memo((props) => {
     });
   }
   if (isLoading) allComments = <LoadingIndicator />;
-  if (error) console.log("error");
+if (error) allComments=<div style={{color:"FF5E5B"}}>{error}</div>
   return <>{allComments}</>;
 });
 

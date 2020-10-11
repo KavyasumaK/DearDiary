@@ -37,7 +37,7 @@ const Requests = () => {
         return (
           <SmallCard
             key={request._id}
-            userPicture={defaultUser}
+            userPicture={request.profilePicture}
             userName={request.userName}
             aboutMe={request.aboutMe}
             title={"✖"}            
@@ -55,7 +55,7 @@ const Requests = () => {
         return (
           <SmallCard
             key={request._id}
-            userPicture={defaultUser}
+            userPicture={request.profilePicture}
             userName={request.userName}
             aboutMe={request.aboutMe}
             title={"✖"}

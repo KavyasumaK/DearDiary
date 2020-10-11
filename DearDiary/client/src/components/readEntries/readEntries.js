@@ -86,7 +86,6 @@ const ReadEntries = () => {
     }
   }, [data]);
 
-  if (error) console.log(error);
   if (isLoading) readEntryContent = <LoadingIndicator />;
 
   return (

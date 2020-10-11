@@ -81,7 +81,7 @@ exports.logout = (req, res) => {
   });
 };
 
-//function to check if the token recieved is valid.
+//function to check if the token received is valid.
 exports.protectPath = catchAsync(async (req, res, next) => {
   // get the token from req (browser as well as API testing platforms such as postman).
   let token;
@@ -111,7 +111,7 @@ exports.protectPath = catchAsync(async (req, res, next) => {
   //if verification fails throw error
   if (!existUser)
     return next(
-      new AppError("You may not have permissions to access this path. Are you looged in?", 401)
+      new AppError("You may not have permissions to access this path. Are you logged in?", 401)
     );
   //if old password: verified throw iat of the token
   if (existUser.changedPasswordAfter(decodedToken.iat)) {

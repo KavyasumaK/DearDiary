@@ -79,7 +79,7 @@ module.exports = (err, req, res, next)=>{
     else if(error.code===11000) error = handleDuplicateFieldsDB(error);
     //Validator errors from mongoose schema
     else if(error.name === 'ValidationError') error = handleValidationError(error);
-    //JWT token recieved is tampered 
+    //JWT token received is tampered 
     if(error.name === 'JsonWebTokenError') error = handleJWTError();
     if(error.name==='TokenExpiredError') error=handleTokenExpiredError();
     sendProdError(error, req, res);  

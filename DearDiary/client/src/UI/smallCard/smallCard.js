@@ -3,16 +3,13 @@ import React from "react";
 import Classes from "./smallCard.module.css";
 import Buttons from "../buttons/buttons";
 import { useHistory } from "react-router-dom";
+import UserPicture from "../userPicture/userPicture";
 
 const SmallCard = (props) => {
   let history = useHistory();
   return (
     <div className={Classes.SmallCard}>
-      <img
-        src={props.userPicture}
-        alt={"Default user"}
-        className={Classes.UserPicture}
-      ></img>
+      <UserPicture userPicture={props.userPicture}/>
       <div>
         <div className={Classes.FlexItems}>
           <div

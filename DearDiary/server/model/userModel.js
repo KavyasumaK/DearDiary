@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema({
   },
   profilePicture: {
     type: String,
+    default: 'DefaultUser.jpg'
   },
   password: {
     type: String,
@@ -74,7 +75,7 @@ userSchema.methods.checkPassword = async function (
   return await bcrypt.compare(userSentPassword, passswordInRecords);
 };
 
-//static method to make sure the token recieved in request is not the one that was generated before the password was reset/updated.
+//static method to make sure the token received in request is not the one that was generated before the password was reset/updated.
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(

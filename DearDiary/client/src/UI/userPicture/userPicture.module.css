@@ -1,0 +1,26 @@
+.UserPicture{
+  width: 4rem;
+  height: 4rem;
+  margin-right:2rem;
+  border-radius: 50%;
+}
+
+.NavBarPicture{
+  width:2rem;
+  height:2rem;
+  border-radius: 50%;
+  margin-top: 2rem;
+}
+
+.SideDrawerPicture{
+  width:6rem;
+  height:6rem;
+  border-radius: 50%;
+}
+
+
+@media(max-width: 499px){
+  .NavBarPicture{
+    display: none;
+  }
+}

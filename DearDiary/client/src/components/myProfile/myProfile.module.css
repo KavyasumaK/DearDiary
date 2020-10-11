@@ -1,0 +1,28 @@
+.UploadLabel{
+  font:inherit;
+  font-size: 1.5rem;
+  font-weight: 100;
+  color:#201E1F;
+  border-bottom: 1px solid #FF5E5B;
+}
+
+.UploadLabel:hover{
+  cursor: pointer;  
+  color:#fcfcfc;
+}
+
+.uploadInput{
+ display: none;
+}
+
+.EditPhoto{
+  width:6rem;
+  height:6rem;
+  border-radius: 50%;
+}
+
+.ImageCombo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

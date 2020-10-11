@@ -3,7 +3,6 @@ import SmallCard from "../../../UI/smallCard/smallCard";
 import useHTTP from "../../../utils/apiCalls";
 
 import Classes from "./search.module.css";
-import defaultUser from "../../../assets/images/DefaultUser.png";
 
 const Search = () => {
   let [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +32,7 @@ const Search = () => {
         key={data.friendDetails._id}
         userName={data.friendDetails.userName}
         aboutMe={data.friendDetails.aboutMe}
-        userPicture={defaultUser}
+        userPicture={data.friendDetails.profilePicture}
         styleType={"SmallCard"}
         btnColor={"Yellow"}
         title={"📨"}

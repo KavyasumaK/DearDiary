@@ -6,7 +6,7 @@ import LoadingIndicator from "../../UI/loading/LoadingIndicator";
 import Comments from "../comments/comments";
 import useHTTP from "../../utils/apiCalls";
 import Classes from "./readFriendsEntries.module.css";
-import defaultUser from "../../assets/images/DefaultUser.png";
+import UserPicture from "../../UI/userPicture/userPicture";
 
 const ReadFriendsEntries = () => {
   const { data, error, isLoading, sendRequest } = useHTTP();
@@ -58,11 +58,7 @@ const ReadFriendsEntries = () => {
         return (
           <div key={entry._id} className={Classes.ReadFriendsEntries}>
             <div className={Classes.User}>
-              <img
-                src={defaultUser}
-                alt={"defaultUser"}
-                className={Classes.UserPicture}
-              ></img>
+              <UserPicture/>
               <div
                 className={Classes.UserName}
                 onClick={() =>

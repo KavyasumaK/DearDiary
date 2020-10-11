@@ -23,7 +23,7 @@ const getUserDetailsFromEmailList = async (emailList) => {
     .sort({ userName: +1 });
 };
 
-//get the details of the users of recieved requests coming from getReceivedRequests middleware
+//get the details of the users of received requests coming from getReceivedRequests middleware
 exports.getNotifications = catchAsync(async (req, res, next) => {
   let listOfEmails = await getFriendDocForMyEmail(req.user.email);
   let receivedRequests = listOfEmails.receivedRequest;
@@ -223,7 +223,7 @@ exports.acceptFriendRequest = catchAsync(async (req, res, next) => {
   let friendSentRequest = null;
   let friendReceivedRequest = null;
 
-  //Remove the  friend email from recieved reqs
+  //Remove the  friend email from received reqs
   //remove userEmail from sent requests
   //and update friendlist
   if (requestExist[0].userEmail === myEmail) {
@@ -282,7 +282,7 @@ exports.deleteFriend = catchAsync(async (req, res, next) => {
   let myFriendList = null;
   let friendsFriendList = null;
 
-  //Remove the  friend email from recieved reqs
+  //Remove the  friend email from received reqs
   //remove userEmail from sent requests
   //and update friendlist
   if (requestExist[0].userEmail === myEmail) {

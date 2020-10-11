@@ -13,6 +13,7 @@ import Logo from "../../assets/images/Logo_Red.svg";
 import NavigationItems from "../navigationItems/navigationItems";
 import SideDrawer from '../sideDrawer/sideDrawer';
 import { userContext } from "../../utils/userContext";
+import UserPicture from "../../UI/userPicture/userPicture";
 
 
 const NavBar = React.memo(() => {
@@ -28,7 +29,6 @@ const NavBar = React.memo(() => {
   let currLocation = useLocation().pathname;
   let navBarClasses = [Classes.NavBar];
 
- 
   //Setting the nav bar content based on the page you are on.
   if (currLocation === "/" || currLocation === "")
     navBarClasses.push(Classes.HideNavBar);
@@ -56,12 +56,15 @@ const NavBar = React.memo(() => {
     );
     //Hamburger Menu
     menuItems = (
+      <div className={Classes.PictureBurger}>
+      <UserPicture specialPicture={"navBar"}/>           
       <div
         className={Classes.NavIcon}
         onClick={() => setmenuShowState(!menuShowState)}
-      >
+        >
         <div></div>
       </div>
+        </div>
     );
     navigationModal = (
       <div
@@ -88,7 +91,9 @@ const NavBar = React.memo(() => {
       </Link>
       {greetingItems}
       <div>
+        <div className={Classes.PictureBurger}>
         {menuItems}        
+        </div>
         {navigationModal}
         {sideDrawer}
       </div>

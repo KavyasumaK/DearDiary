@@ -11,4 +11,6 @@
   width: 90%;
   max-height: 6rem;
   overflow-wrap: break-word;
+  display: block;
+  resize: none;
 }

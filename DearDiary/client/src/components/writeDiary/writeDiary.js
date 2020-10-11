@@ -49,7 +49,6 @@ const WriteDiary = () => {
     },
     [sendRequest, state]
   );
-
   if (data) {
     return <Redirect to="/myhome" />;
   }

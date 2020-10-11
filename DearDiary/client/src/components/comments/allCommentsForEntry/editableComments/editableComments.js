@@ -6,7 +6,6 @@ import Buttons from "../../../../UI/buttons/buttons";
 const editableComments = (props) => {
   let comment = props.comment;
   const editCommentState = props.editCommentState
-  console.log('hell')
 
   const checkItemState = (ID) => {
       if(editCommentState.settings){
@@ -49,9 +48,8 @@ const editableComments = (props) => {
       styleType={"Comment"}
       buttonColor={"Green"}
       customClickHandler={() => {
-        props.changeCommentState(comment.comment);
         props.toggleExpansion(comment._id);
-        // setInputState(!inputState);
+        props.changeCommentState(comment.comment);
       }}
     />
     <Buttons

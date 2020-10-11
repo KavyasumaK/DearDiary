@@ -18,6 +18,6 @@ router.get('/logout', authController.logout);
 //middleware to make sure all the rest of the paths are protected.
 router.use(authController.protectPath);
 router.get('/getme', userController.myProfile);
-router.patch("/updateme", userController.updateMe);
+router.patch("/updateme", userController.uploadUserPhoto, userController.resizeUserPhoto ,userController.updateMe);
 router.patch('/updatepassword', authController.updatePassword);
 module.exports = router;

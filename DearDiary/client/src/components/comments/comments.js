@@ -40,18 +40,22 @@ const Comments = (props) => {
           styleType={"Comment"}
           buttonColor={"Green"}
         />
-
         <Buttons
-          customClickHandler={() => insertComment()}
+          customClickHandler={() => {
+            setCommentVal("");
+          }}
           title={"Cancel"}
           styleType={"Comment"}
           buttonColor={"Yellow"}
         />
       </div>
-      {isLoading ? <LoadingIndicator /> : ""}
-      {error ? <div>{error}</div> : ""}
+      {error ? <div style={{color:"#FF5E5B"}}>{error}</div> : ""}
     </div>
   );
+
+  if (isLoading) {
+    primaryComment = <LoadingIndicator />;
+  }
 
   return (
     <>
@@ -64,7 +68,7 @@ const Comments = (props) => {
         customClickHandler={() => {
           toggleComments();
         }}
-        title= {short?"\u2b99":"\u2b9b"}
+        title={short ? "\u2b99" : "\u2b9b"}
         styleType={"SmallCard"}
         buttonColor={"Green"}
       />

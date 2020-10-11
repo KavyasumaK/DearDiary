@@ -51,9 +51,10 @@ const useHTTP = () => {
     try {
       const response = await Axios({
         method: method,
-        url: `http://localhost:1337/api/v1${url}`,
+        url: `${process.env.REACT_APP_SERVER_API}${url}`,
         data: body,
         withCredentials:true,
+        headers: reqExtra
       });
       if(url!=='/users/logout') dispatchHttp({type:'RESPONSE', responseData: response, extra: reqExtra})
     } catch (err) {

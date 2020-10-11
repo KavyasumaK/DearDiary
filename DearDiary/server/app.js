@@ -7,6 +7,7 @@
  * change3: 09/19/2020 added friends router
  ***************************************/
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -19,7 +20,8 @@ const globalErrorHandler = require('./controller/errorController');
 const app = express();
 
 //MIddleware to serve Static files
-// app.use(express.static(`${__dirname}/Public`));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(`${__dirname}/public/users`));
 
 //{TBD change cors to include specific IPs}
 app.use(cors({
@@ -32,6 +34,8 @@ app.use(cors({
 //Middleware To parse req.body
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
 // {TBD Sanitize}
 
 
