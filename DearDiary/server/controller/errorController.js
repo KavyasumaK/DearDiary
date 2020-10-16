@@ -19,6 +19,7 @@ const sendDevError = (err,req,res)=>{
       stack: err.stack
     });
   }
+  console.log('Error: ', err);
   //Non operational Error
   return res.status(err.statusCode).json({
     type:'NON OPERATIONAL ERROR',
@@ -31,6 +32,8 @@ const sendDevError = (err,req,res)=>{
 const sendProdError = (err,req,res)=>{
   //if operations error then custom error message for each type of error else a feneric message
   let errMessage = err.isOperational?err.message:'Oops! Looks like coding Gremlins 😈 are at work. We will fix this soon.'
+  //Error to log
+  console.log('Error: ', err);
   res.status(err.statusCode).json({
     status: err.status,
     message: errMessage
@@ -44,7 +47,7 @@ const handleCastErrorDB = (err)=>{
   return new AppError(message, 400);
 }
 
-// {TBD: Error handled only for duplicate email in userModel. To be expanded for others}
+// {TBD: Error handled only for duplicate email in userModel. If required can be expanded for others. FOr now no other field in the dB is checking for duplicates}
 const handleDuplicateFieldsDB = (error)=>{
   const message = `Email already exists, Please use another one to register.`;
   return new AppError(message, 400);
@@ -56,6 +59,7 @@ const handleValidationError = (error)=>{
   return new AppError(message, 400);
 }
 
+//Errors with compromised tokens
 const handleJWTError=()=>new AppError('Looks like you are logged out. Please login again.', 401);
 const handleTokenExpiredError = ()=>new AppError('Looks like you are logged out. Please login again.', 401);
 
@@ -73,7 +77,7 @@ module.exports = (err, req, res, next)=>{
       code: err.code,
       message: err.message
     }
-    //Thrown by DB when cannot case like when ID is '####' etc
+    //Thrown by DB when cannot cast like when ID is '####' etc
     if(error.name==='CastError') error = handleCastErrorDB(error);
     //duplication errors (for example duplicate email in userModel)
     else if(error.code===11000) error = handleDuplicateFieldsDB(error);

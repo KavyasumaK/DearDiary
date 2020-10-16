@@ -1,3 +1,9 @@
+/****************************************
+ * Title: commentController
+ * Intial Date: 10/2020
+ * Summary: CRUD operations on comments from users
+ * Change 1: 
+ ***************************************/
 const mongoose = require("mongoose");
 
 const catchAsync = require("../utils/catchAsync");
@@ -7,6 +13,7 @@ const userModel = require("../model/userModel");
 const diaryEntryModel = require("../model/diaryEntryModel");
 const commentModel = require("../model/commentModel");
 
+//Insert comment for an entry.
 exports.insertComment = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   const { entryID, comment } = req.body;
@@ -15,13 +22,16 @@ exports.insertComment = catchAsync(async (req, res, next) => {
     return next(new AppError("userID and entryID are required", 401));
   if (!comment || !comment.trim())
     return next(new AppError("Comment is required.", 401));
+    //to check if UserID and entryID are valid
   const userExist = await userModel.findById(userID);
   const entryExist = await diaryEntryModel.findById(
     mongoose.Types.ObjectId(entryID)
   );
+
   if (!userExist || !entryExist)
     return next(new AppError("User or entry not found.", 401));
-    // {TBD make sure the person commenting on the doc is a friend to whom entry belongs to}
+  
+  // {TBD make sure the person commenting on the doc is a friend to whom entry belongs to}
   const newComment = await (await commentModel.create({ userID, entryID, comment }));
 
   res.status(200).json({
@@ -30,6 +40,7 @@ exports.insertComment = catchAsync(async (req, res, next) => {
   });
 });
 
+//Get all comments filtered by entry ID.
 exports.getComments = catchAsync(async (req, res, next) => {
   let filter = {};
   if (req.body && req.body.entryID) filter = { entryID: req.body.entryID };
@@ -40,6 +51,7 @@ exports.getComments = catchAsync(async (req, res, next) => {
   });
 });
 
+//update comment only if commentID and userID match in db.
 exports.updateComment = catchAsync(async (req, res, next) => {
   let commentID = req.body.commentID;
   let userID = req.user._id;
@@ -48,6 +60,7 @@ exports.updateComment = catchAsync(async (req, res, next) => {
     return next(
       new AppError("Comment ID and entry are required to update comment.", 401)
     );
+
   const updatedComment = await commentModel.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(commentID), userID: userID },
     { comment: comment },
@@ -62,6 +75,7 @@ exports.updateComment = catchAsync(async (req, res, next) => {
  else this.getComments(req,res,next);
 });
 
+//Delete comment only if commentID and userID match.
 exports.deleteComment = catchAsync(async (req, res, next) => {
   let commentID = req.body.commentID;
   let userID = req.user._id;

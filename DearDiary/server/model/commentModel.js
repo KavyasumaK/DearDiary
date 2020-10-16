@@ -6,6 +6,7 @@
  ***************************************/
 const mongoose = require("mongoose");
 
+//Creating mongoose Schema for the comments by users.
 const commentSchema = mongoose.Schema(
   {
     comment: {

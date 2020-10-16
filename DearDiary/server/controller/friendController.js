@@ -11,30 +11,33 @@ const AppError = require("../utils/appError");
 
 const catchAsync = require("../utils/catchAsync");
 
+//get the user records in friend Model
 const getFriendDocForMyEmail = async (myEmail) => {
   return await friendModel.findOne({
     userEmail: myEmail,
   });
 };
-const getUserDetailsFromEmailList = async (emailList) => {
+
+//To populate friends'/potential friends' names, photos and other details on the client side.
+const getFriendDetailsFromEmailList = async (emailList) => {
   return await userModel
     .find({ email: { $in: emailList } })
     .select("-__v -passwordChangedAt")
     .sort({ userName: +1 });
 };
 
-//get the details of the users of received requests coming from getReceivedRequests middleware
+//To populate sent and received notifications for a logged in user
 exports.getNotifications = catchAsync(async (req, res, next) => {
   let listOfEmails = await getFriendDocForMyEmail(req.user.email);
   let receivedRequests = listOfEmails.receivedRequest;
   let sentRequests = listOfEmails.sentRequest;
-  // let listOfEmails = req.receivedRequests[0].receivedRequest;
   let receiveRequestListObj = null;
   let sentRequestListObj = null;
+
   if (receivedRequests.length > 0)
-    receiveRequestListObj = await getUserDetailsFromEmailList(receivedRequests);
+    receiveRequestListObj = await getFriendDetailsFromEmailList(receivedRequests);
   if (sentRequests.length > 0)
-    sentRequestListObj = await getUserDetailsFromEmailList(sentRequests);
+    sentRequestListObj = await getFriendDetailsFromEmailList(sentRequests);
 
   res.status(200).json({
     status: "success",
@@ -43,18 +46,19 @@ exports.getNotifications = catchAsync(async (req, res, next) => {
   });
 });
 
+//TO populate the friendslist of a logged in user
 exports.getFriends = catchAsync(async (req, res, next) => {
   const friendsList = (await getFriendDocForMyEmail(req.user.email)).friendList;
   let friends = null;
   if (friendsList.length > 0)
-    friends = await getUserDetailsFromEmailList(friendsList);
+    friends = await getFriendDetailsFromEmailList(friendsList);
   res.status(201).json({
     status: "Success",
     friends,
   });
 });
 
-//middleware to check if the entered friend's email exists.
+//middleware to check if the entered friend's email exists when searching for a friend and/or sending a friend request.
 exports.findFriend = catchAsync(async (req, res, next) => {
   const { friendEmail } = req.body;
 
@@ -66,6 +70,7 @@ exports.findFriend = catchAsync(async (req, res, next) => {
       )
     );
 
+  //IF user is trying to send a request to self.
   if (friendEmail.toLowerCase() === req.user.email.toLowerCase())
     return next(new AppError("Your search email is your email.", 401));
 
@@ -97,7 +102,7 @@ exports.sendFriendRequest = catchAsync(async (req, res, next) => {
   let userSendReqs = null;
   let friendsReceiveReqs = null;
 
-  // if (friendDetailsEmail) {
+  
   //check if the user and the friend are in friendlist db
   const usersExist = await friendModel.find({
     userEmail: { $in: [myEmail, friendDetailsEmail] },
@@ -167,6 +172,7 @@ exports.sendFriendRequest = catchAsync(async (req, res, next) => {
   // }
 });
 
+
 const getBothUserAndFriend = async (req, res, next) => {
   if (!req.body.email || req.body.email === req.user.email)
     return next(new AppError("Friends email is invalid.", 401));
@@ -175,7 +181,7 @@ const getBothUserAndFriend = async (req, res, next) => {
       $in: [req.body.email.toLowerCase(), req.user.email.toLowerCase()],
     },
   });
-  //if  error return error
+
   if (requestExist.length < 2)
     return next(
       new AppError(
@@ -212,7 +218,6 @@ const updateFriendList = async (
 exports.acceptFriendRequest = catchAsync(async (req, res, next) => {
   //get the user email and fried email doc from friends collection.
   const requestExist = await getBothUserAndFriend(req, res, next);
-  // const requestExist = await getBothUserAndFriend(myEmail, friendEmail);
   const friendEmail = req.body.email.toLowerCase();
   const myEmail = req.user.email.toLowerCase();
 
@@ -241,7 +246,7 @@ exports.acceptFriendRequest = catchAsync(async (req, res, next) => {
     friendSentRequest = requestExist[0].sentRequest;
     friendReceivedRequest = requestExist[0].receivedRequest;
   }
-
+  //Check for vlidity of friend request
   if (myFriendList.indexOf(friendEmail) > -1)
     return next(new AppError("You are already friends with this person", 401));
   if (myReceivedRequest.indexOf(friendEmail) < 0)
@@ -274,7 +279,7 @@ exports.acceptFriendRequest = catchAsync(async (req, res, next) => {
 
 //Delete Friend request
 exports.deleteFriend = catchAsync(async (req, res, next) => {
-  //get the user email and fried email doc from friends collection.
+  //get the user email and friend email doc from friends collection.
   const requestExist = await getBothUserAndFriend(req, res, next);
   let myEmail = req.user.email.toLowerCase();
   let friendEmail = req.body.email.toLowerCase();
@@ -282,8 +287,7 @@ exports.deleteFriend = catchAsync(async (req, res, next) => {
   let myFriendList = null;
   let friendsFriendList = null;
 
-  //Remove the  friend email from received reqs
-  //remove userEmail from sent requests
+  //Remove the  friend email from user friendList and viceversa
   //and update friendlist
   if (requestExist[0].userEmail === myEmail) {
     myFriendList = requestExist[0].friendList;
@@ -305,6 +309,7 @@ exports.deleteFriend = catchAsync(async (req, res, next) => {
   this.getFriends(req, res, next);
 });
 
+//To cancel any sent or received requests
 exports.rescindRequests = catchAsync(async (req, res, next) => {
   const myEmail = req.user.email;
   const friendEmail = req.body.email;
@@ -340,6 +345,7 @@ exports.rescindRequests = catchAsync(async (req, res, next) => {
     friendFilter= {sentRequest:sentList}
   }
 
+  //updayte list and send the latest notifications.
   await updateFriendList(myEmail, myFilter, friendEmail, friendFilter);  
   this.getNotifications(req,res,next)
 });

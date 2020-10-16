@@ -1,3 +1,9 @@
+/****************************************
+ * Title: authController
+ * Intial Date: 09/2020
+ * Summary: CRUD operations on authenticating users
+ * Change 1:
+ ***************************************/
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
@@ -24,9 +30,11 @@ const createAndSendJWT = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRES * 1000 * 24 * 60 * 60
     ),
-    httpOnly: true, //To make sure cookie is not tampered with in the browser
+    //To make sure cookie is not tampered with in the browser
+    httpOnly: true, 
     secure: true,
-    // sameSite:'none',
+    // secure=req.secure
+    SameSite:'none',
   };
 
   // add cookie to response
@@ -52,19 +60,22 @@ exports.Register = catchAsync(async (req, res, next) => {
 //Login: compare email and encrypted password
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
+  let statusCode;
+  //Check the body has email and password
   if (!email || !password)
     return next(new AppError("Email and password required.", 400));
-
+  //Get the user from DB
   const user = await userModel
     .findOne({ email: req.body.email })
     .select("+password");
-
-  let statusCode;
+  
+  //if user doesn't exist or password doesn't match after unhashing the password return with error
   if (!user || !(await user.checkPassword(req.body.password, user.password))) {
     return next(new AppError("Email and/or password do not match.", 404));
   } else {
     statusCode = 200;
   }
+  //if aauthentication is correct create and send jwt token
   createAndSendJWT(user, statusCode, res);
 });
 
@@ -85,6 +96,7 @@ exports.logout = (req, res) => {
 exports.protectPath = catchAsync(async (req, res, next) => {
   // get the token from req (browser as well as API testing platforms such as postman).
   let token;
+  //for postman token sent as in authorization Type bearer
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -94,12 +106,13 @@ exports.protectPath = catchAsync(async (req, res, next) => {
     token = req.cookies.MrHenshawAsDearDiary;
   }
 
-  //if doesn't exist throw error
+  //if token doesn't exist throw error
   if (!token) {
     return next(
       new AppError("You may not have permissions to access this path. Are you logged in?", 401)
     );
   }
+
   //if exists verify the token:
   //wrapping the jwt.verify function in promisify
   const decodedToken = await promisify(jwt.verify)(
@@ -148,11 +161,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   }
 
   //findByIDandUpdate doesn't work as intended. JWT sent in this case is not right
-  // const newUser = await userModel.findByIdAndUpdate(
-  //   req.user._id,
-  //   { password: req.body.newPassword },
-  //   { new: true, runValidators: true }
-  // );
+  // const newUser = await userModel.findByIdAndUpdate(req.user._id, { password: req.body.newPassword },{ new: true, runValidators: true });
 
   user.password = req.body.newPassword;
   await user.save();

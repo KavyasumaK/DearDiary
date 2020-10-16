@@ -40,8 +40,10 @@ const upload = multer({
   fileFilter: multerFilter
 });
 
+//middleware for readying the photo for upload
 exports.uploadUserPhoto = upload.single('picture');
 
+//Resixe and save the file to server folder.
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
   //making the filename as unique as possible
@@ -72,9 +74,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
       filteredObj[el] = req.body[el];
   });
 
-  // {TBD: when logic for uploading photo is added.}
   if (req.file) filteredObj.profilePicture = req.file.filename;
-  // if (req.file) filteredObj.photo = req.file.filename;
   const updatedUser = await userModel.findByIdAndUpdate(
     req.user._id,
     filteredObj,
@@ -93,4 +93,4 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 });
 
 
-//{TBD upload picture, reset password, emailing ability}
+

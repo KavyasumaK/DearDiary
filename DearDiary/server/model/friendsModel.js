@@ -8,6 +8,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+//Creating mongoose Schema for the friendList.
 const friendsSchema = mongoose.Schema({
   userEmail:{
     type:String,

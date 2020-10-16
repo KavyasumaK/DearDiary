@@ -1,5 +1,4 @@
       
-
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
@@ -40,7 +39,6 @@ const userSchema = mongoose.Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
   aboutMe:String,
-  // {TBD add reference to friends and implementation to maintain freind requests.}
 });
 
 //encrypt password
@@ -67,7 +65,7 @@ userSchema.pre(/^find/, function (next) {
   next();
 });
 
-//to compare the hashed passwords
+//to compare the hashed passwords when user logs in.
 userSchema.methods.checkPassword = async function (
   userSentPassword,
   passswordInRecords

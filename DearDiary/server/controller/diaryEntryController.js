@@ -1,5 +1,5 @@
 /****************************************
- * Title: errorController
+ * Title: diaryEntryController
  * Intial Date: 09/13/2020
  * Summary: CRUD operations on diary entries for logged in users
  * Change 1: 09/16/2020: Added the update and delete logic.
@@ -12,7 +12,7 @@ const userModel = require("../model/userModel");
 const catchAsync = require("../utils/catchAsync");
 // const AppError = require("../utils/appError");
 
-//Create an entry
+//Create an entry for a logged in user
 exports.makeAnEntry = catchAsync(async (req, res, next) => {
   const { dear, entry, privacy } = req.body;
   const userID = req.user._id;
@@ -28,7 +28,7 @@ exports.makeAnEntry = catchAsync(async (req, res, next) => {
   });
 });
 
-//Read Entries
+//Read Entries of a logged in user
 exports.getMyEntries = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   const myEntries = await diaryEntryModel
@@ -40,7 +40,7 @@ exports.getMyEntries = catchAsync(async (req, res, next) => {
   });
 });
 
-//Read Entries
+//Read Entries of a logged in user by a specific date
 exports.getMyEntryOnDate = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   // if(!req.body||!req.body.date) return this.getMyEntries(req,res,next);
@@ -59,7 +59,7 @@ exports.getMyEntryOnDate = catchAsync(async (req, res, next) => {
   });
 });
 
-//Read entries
+//Read latest entry of a logged in user.
 exports.getMyLatestEntry = catchAsync(async (req, res, next) => {
   const userID = req.user._id;
   const latestEntry = await diaryEntryModel
@@ -71,7 +71,7 @@ exports.getMyLatestEntry = catchAsync(async (req, res, next) => {
   });
 });
 
-//Update Entries
+//Update Entries if entry and user are valid.
 exports.updateMyEntry = catchAsync(async (req, res, next) => {
   let updateEntry = req.body;
 
@@ -82,24 +82,19 @@ exports.updateMyEntry = catchAsync(async (req, res, next) => {
     runValidators: true, //To run validators set in schema.
     useFindAndModify: false,
   });
+  //Once updated send all the entries of the user so that the client can be redirected appropriately.
   return this.getMyEntries(req, res, next);
-  // res.status(200).json({
-  //   status:'success',
-  //   updatedEntry,
-  // });
 });
 
-//delete entries
+//delete an entry of a logged in user
 exports.deleteMyEntry = catchAsync(async (req, res, next) => {
-  // let updateEntry = req.body
   const filter = { _id: req.query.id, userID: req.user._id };
   await diaryEntryModel.findOneAndDelete(filter);
+  //Once deleted send all the entries of the user so that the client can be redirected appropriately.
   return this.getMyEntries(req, res, next);
-  // res.status(200).json({
-  //   status:'success',
-  // });
 });
 
+//Get all the froends' shared diary entries of a logged in user
 exports.getFriendsEntries = catchAsync(async (req, res, next) => {
   //get the user
   const myEmail = req.user.email;
@@ -110,6 +105,7 @@ exports.getFriendsEntries = catchAsync(async (req, res, next) => {
       .find({ userEmail: myEmail })
       .select("-_id -__v -sentRequest -receivedRequest -userEmail")
   )[0].friendList;
+
   if (friendEmailList.length > 0) {
     //map the IDs to emails
     let friendsIDs = (
@@ -122,12 +118,13 @@ exports.getFriendsEntries = catchAsync(async (req, res, next) => {
       //for each one in friendsIDs get dairy entry where entry is public
       friendsEntries = await diaryEntryModel
         .find({ userID: { $in: friendsIDs }, privacy: "share" })
-        .populate("userID", "userName email")
+        .populate("userID", "userName email profilePicture")
         .sort("-createdAt")
         .select("-__v");
     }
   }
-
+  
+  //Will sent empty friendsEntries Array if logged in user doesn't have any friends.
   res.status(200).json({
     status: "Success",
     friendsEntries,

@@ -38,7 +38,7 @@ const server = app.listen(port, () => {
   console.log(`listening on port ${port}... 👂`);
 });
 
-//DB Atlas unhandled Rejection.
+//DB Atlas unhandled Rejections if any.
 process.on("unhandledRejection", (err) => {
   console.log("unhandled Rejection: Shutting Down... 🔐");
   console.log(err);

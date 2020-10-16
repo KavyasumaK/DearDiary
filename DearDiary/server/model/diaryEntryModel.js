@@ -7,6 +7,7 @@
 
 const mongoose = require("mongoose");
 
+//Creating mongoose Schema for the diary entry.
 const diaryEntrySchema = mongoose.Schema(
   {
     dear: {
