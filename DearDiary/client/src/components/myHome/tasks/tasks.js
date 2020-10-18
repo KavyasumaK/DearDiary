@@ -22,10 +22,6 @@ const task = React.memo(()=>{
       <img alt={"Friends"} src={friends} className={Classes.IconSize} />
       Read friends' diary.
     </Link>
-    {/* <Link to='/writediary' className={Classes.TaskLink}>
-      <img alt={"Calendar"} src={calendar} className={Classes.IconSize} />
-      Read entry on a specific date.
-    </Link> */}
   </div>
   );
 });

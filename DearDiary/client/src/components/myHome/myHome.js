@@ -1,7 +1,7 @@
 /****************************************
  * Title: myHome
  * Intial Date:
- * Summary: TBD, Hopem page for logged in user.
+ * Summary: Home page for logged in user.
  * Change 1:
  ***************************************/
 

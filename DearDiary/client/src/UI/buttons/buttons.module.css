@@ -59,8 +59,8 @@
 
 
 @media (max-width:900px){
-  .Buttons{
-    font-size: 1rem;
+  .DefaultButton{
+    font-size: 1.5rem;
     width:100%;
   }
   .Red{
@@ -76,7 +76,7 @@
     width:2rem;
   }
   .Comment{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     height: 2rem
   }
 }

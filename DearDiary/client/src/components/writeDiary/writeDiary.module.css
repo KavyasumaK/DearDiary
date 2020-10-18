@@ -65,4 +65,10 @@
   .ErrorMessage{
     font-size: 1.5rem;
   }
+  .WriteDiary{
+    font-size: 1.5rem;
+  }
+  .Paraphernalia input{
+    font-size: 1.5rem;
+  }
 }

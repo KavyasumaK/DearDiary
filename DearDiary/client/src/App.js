@@ -19,7 +19,6 @@ import ReadFriendsEntries from "./components/readFriendsEntries/readFriendsEntri
 const App = () => {
   const getuserContext = useContext(userContext);
   getuserContext.getMe();
-
   return (
     <>
     <NavBar/>  
@@ -27,7 +26,7 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Form} />
           <Route exact path="/signup" component={Form} />
-          {/* TBD: Protected Routes */}
+          {/* Protected Routes */}
           <Route exact path="/myhome" component={MyHome}/>
           <Route exact path="/myprofile" component={MyProfile}/>
           <Route exact path="/writediary" component={WriteDiary}/>

@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 
 import Classes from "./requests.module.css";
-import defaultUser from "../../../assets/images/DefaultUser.png";
 import useHTTP from "../../../utils/apiCalls";
 import LoadingIndicator from "../../../UI/loading/LoadingIndicator";
 import SmallCard from "../../../UI/smallCard/smallCard";

@@ -58,7 +58,7 @@ const ReadFriendsEntries = () => {
         return (
           <div key={entry._id} className={Classes.ReadFriendsEntries}>
             <div className={Classes.User}>
-              <UserPicture/>
+              <UserPicture userPicture={entry.userID[0].profilePicture}/>
               <div
                 className={Classes.UserName}
                 onClick={() =>

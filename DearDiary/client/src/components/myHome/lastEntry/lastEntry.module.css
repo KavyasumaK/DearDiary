@@ -19,7 +19,7 @@
 }
 
 
-@media(max-width: 500px) {
+@media(max-width: 600px) {
   .LastEntry{
     width:90%;
     padding: 3rem 3rem;

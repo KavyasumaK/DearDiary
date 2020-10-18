@@ -22,3 +22,9 @@
   height:50vh;
   color: #FCFCFC;
 }
+
+@media(max-width:600px){
+  .LastEntryDate, .GreetingText{
+    font-size: 1.5rem;
+  }
+}

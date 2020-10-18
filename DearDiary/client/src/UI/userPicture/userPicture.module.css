@@ -23,4 +23,8 @@
   .NavBarPicture{
     display: none;
   }
+  .UserPicture{
+    width: 3rem;
+    height: 3rem;
+  }
 }

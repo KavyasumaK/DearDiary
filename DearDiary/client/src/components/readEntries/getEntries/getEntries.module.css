@@ -56,3 +56,12 @@
   background-color: rgba(255, 211, 139);
   padding:1rem;
 }
+
+@media(max-width:600px){
+  .CollapseController{
+    font-size: 1.2rem;
+  }
+  .toRetainWhiteSpace{
+    font-size: 1.5rem;
+  }
+}

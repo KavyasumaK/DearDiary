@@ -3,12 +3,13 @@
   font-size: 1.5rem;
   font-weight: 100;
   color:#201E1F;
-  border-bottom: 1px solid #FF5E5B;
+  border-bottom: 1px solid #FFB238;
 }
 
 .UploadLabel:hover{
   cursor: pointer;  
   color:#fcfcfc;
+  border-bottom: 1px solid #FF5E5B
 }
 
 .uploadInput{

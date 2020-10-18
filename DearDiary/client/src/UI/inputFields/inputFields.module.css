@@ -74,6 +74,11 @@
 
 
 @media(max-width:1250px){
+  .InputFields{
+    font-size: 1.5rem;
+    width:80%;
+    margin: auto;
+  }
   .ProfileComponent{
     width: 90%;
     font-size: 1.5rem;

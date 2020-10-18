@@ -9,11 +9,11 @@ import React, { useReducer, useCallback, useContext } from "react";
 import { useLocation, Redirect } from "react-router-dom";
 
 import Classes from "./form.module.css";
-import Card from "../../../UI/card/card";
+import MyHome from "../../myHome/myHome";
 import Buttons from "../../../UI/buttons/buttons";
+import Card from "../../../UI/card/card";
 import InputLabel from "../../../UI/inputFields/inputFields";
 import useHTTP from "../../../utils/apiCalls";
-import MyHome from "../../myHome/myHome";
 import { userContext } from "../../../utils/userContext";
 
 const formDetails = {
@@ -73,7 +73,7 @@ const Form = () => {
     />
   ));
 
-  // getuserContext.getMe();
+
   let formDets = "";
   let errorMessage = "";
   if (isLoading) formDets = <div>Loading...</div>;
@@ -91,15 +91,6 @@ const Form = () => {
     >
       {formInputs}
       <Buttons title={"Submit"} styleType={"DefaultButton"} buttonColor={"Green"}></Buttons>
-      {/* TBD: forgot password logic for signup*/}
-      {(() => {
-        if (currentPath === "/login")
-          return (
-            <div style={{ fontSize: "1rem", marginTop: "1rem" }}>
-              Forgot password //TBD//
-            </div>
-          );
-      })()}
     </form>
   );
 

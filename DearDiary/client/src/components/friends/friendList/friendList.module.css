@@ -19,4 +19,8 @@
   .FriendList{
     width:90%;
   }
+
+  .FriendList h3{
+    font-size: 2rem;
+  }
 }

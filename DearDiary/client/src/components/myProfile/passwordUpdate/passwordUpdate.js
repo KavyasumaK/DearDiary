@@ -1,7 +1,7 @@
 /****************************************
  * Title: passwordIpdate
  * Intial Date:
- * Summary: component for updateing passwords. required the user to have oldpassword as well. {TBD: Reset Password/update password}
+ * Summary: component for updateing passwords. required the user to have oldpassword as well.
  * Change 1:
  ***************************************/
 import React, { useState, useCallback } from "react";

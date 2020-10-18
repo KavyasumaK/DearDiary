@@ -25,7 +25,7 @@ const globalErrorHandler = require("./controller/errorController");
 const AppError = require("./utils/appError");
 
 const app = express();
-
+console.log(process.env.CORS_ORIGIN);
 //Middleware to serve Static files
 app.use(express.static(path.join(__dirname, "public")));
 
