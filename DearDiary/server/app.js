@@ -25,7 +25,6 @@ const globalErrorHandler = require("./controller/errorController");
 const AppError = require("./utils/appError");
 
 const app = express();
-console.log(process.env.CORS_ORIGIN);
 //Middleware to serve Static files
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -67,7 +66,7 @@ app.use(hpp());
 
 //TO compress response
 app.use(compression());
-
+console.log('In Routes')
 //Router level middleware
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/diaryentry", diaryEntryRouter);
