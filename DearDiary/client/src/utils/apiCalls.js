@@ -51,7 +51,7 @@ const useHTTP = () => {
     try {
       const response = await Axios({
         method: method,
-        url: `${process.env.REACT_APP_SERVER_API}/api/v1${url}`,
+        url: `${process.env.REACT_APP_SERVER_API}${url}`,
         data: body,
         withCredentials:true,
         headers: reqExtra
