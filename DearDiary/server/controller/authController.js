@@ -15,7 +15,7 @@ const AppError = require("../utils/appError");
 
 
 //Creates a signedtoken and sends the response to the client
-const createAndSendJWT = (user, statusCode, res) => {
+const createAndSendJWT = (user, statusCode, req, res) => {
   //sign JWT
   const signedJWT = jwt.sign(
     {
@@ -32,7 +32,7 @@ const createAndSendJWT = (user, statusCode, res) => {
     ),
     //To make sure cookie is not tampered with in the browser
     httpOnly: true, 
-    secure: true,
+    secure: req.secure||req.headers['x-forward-proto']==='https',
     // secure=req.secure
     SameSite:'none',
   };
@@ -54,7 +54,7 @@ const createAndSendJWT = (user, statusCode, res) => {
 exports.Register = catchAsync(async (req, res, next) => {
   const user = await userModel.create(req.body);
   await friendsModel.create({userEmail:user.email});
-  createAndSendJWT(user, 201, res);
+  createAndSendJWT(user, 201, req, res);
 });
 
 //Login: compare email and encrypted password
@@ -76,7 +76,7 @@ exports.login = catchAsync(async (req, res, next) => {
     statusCode = 200;
   }
   //if aauthentication is correct create and send jwt token
-  createAndSendJWT(user, statusCode, res);
+  createAndSendJWT(user, statusCode, req, res);
 });
 
 //logout with a dummy token sent to the browser that expires in 10s
@@ -165,5 +165,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   user.password = req.body.newPassword;
   await user.save();
-  createAndSendJWT(user, 200, res);
+  createAndSendJWT(user, 200, req, res);
 });
