@@ -53,7 +53,7 @@ const useHTTP = () => {
         method: method,
         url: `${process.env.REACT_APP_SERVER_API}${url}`,
         data: body,
-        withCredentials:true,
+        // withCredentials:true,
         headers: reqExtra
       });
       if(url!=='/users/logout') dispatchHttp({type:'RESPONSE', responseData: response, extra: reqExtra})
