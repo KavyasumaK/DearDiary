@@ -32,28 +32,28 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 
 
-// //{TBD change cors to include deployment origin of front end}
-// app.use(
-//   cors({
-//     allowedHeaders: ["Content-Type", "Authentication"],
-//     exposedHeaders: ["Content-Range", "Content-Type"],
-//     credentials: true,
-//     origin: process.env.CORS_ORIGIN,
-//   })
-// );
+//{TBD change cors to include deployment origin of front end}
+app.use(
+  cors({
+    allowedHeaders: ["Content-Type", "Authentication"],
+    exposedHeaders: ["Content-Range", "Content-Type"],
+    credentials: true,
+    origin: process.env.CORS_ORIGIN,
+  })
+);
 
-// // app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
-// // enable pre-flight request
-// app.options(
-//   "*",
-//   cors({
-//     allowedHeaders: ["Content-Type", "Authentication"],
-//     exposedHeaders: ["Content-Range", "Content-Type"],
-//     credentials: true,
-//     origin: process.env.CORS_ORIGIN
-//   })
-// );
+// enable pre-flight request
+app.options(
+  "*",
+  cors({
+    allowedHeaders: ["Content-Type", "Authentication"],
+    exposedHeaders: ["Content-Range", "Content-Type"],
+    credentials: true,
+    origin: process.env.CORS_ORIGIN
+  })
+);
 
 //Middleware To parse req.body
 app.use(express.json());
