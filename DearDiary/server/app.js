@@ -31,28 +31,16 @@ app.use(express.static(path.join(__dirname, "public")));
 //http servers security
 app.use(helmet());
 
-let corsOptions = {
+
+//{TBD change cors to include deployment origin of front end}
+app.use(
+  cors({
     allowedHeaders: ["Content-Type", "Authentication"],
     exposedHeaders: ["Content-Range", "Content-Type"],
     credentials: true,
-    origin: function (origin, callback) {
-      if (origin.startsWith(process.env.CORS_ORIGIN)) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    }
-  }
-
-//{TBD change cors to include deployment origin of front end}
-// app.use(
-//   cors({
-//     allowedHeaders: ["Content-Type", "Authentication"],
-//     exposedHeaders: ["Content-Range", "Content-Type"],
-//     credentials: true,
-//     origin: process.env.CORS_ORIGIN,
-//   })
-// );
+    origin: [process.env.CORS_ORIGIN, 'https://polar-sands-07787.herokuapp.com/api/v1/users/getme'],
+  })
+);
 
 app.use(cors(corsOptions))
 
