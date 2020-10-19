@@ -45,10 +45,15 @@ app.use(
 app.use(cors(corsOptions))
 
 // enable pre-flight request
-// app.options(
-//   "*",
-//   cors(corsOptions)
-// );
+app.options(
+  "*",
+  cors({
+    allowedHeaders: ["Content-Type", "Authentication"],
+    exposedHeaders: ["Content-Range", "Content-Type"],
+    credentials: true,
+    origin: [process.env.CORS_ORIGIN, 'https://polar-sands-07787.herokuapp.com/api/v1/users/getme', 'https://polar-sands-07787.herokuapp.com/api/v1/users/login'],
+  })
+);
 
 //Middleware To parse req.body
 app.use(express.json());
