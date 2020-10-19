@@ -31,13 +31,10 @@ app.use(express.static(path.join(__dirname, "public")));
 //http servers security
 app.use(helmet());
 
-//{TBD change cors to include deployment origin of front end}
-app.use(
-  cors({
+let corsOptions = {
     allowedHeaders: ["Content-Type", "Authentication"],
     exposedHeaders: ["Content-Range", "Content-Type"],
     credentials: true,
-    // origin: process.env.CORS_ORIGIN,
     origin: function (origin, callback) {
       if (origin.startsWith(process.env.CORS_ORIGIN)) {
         callback(null, true)
@@ -45,25 +42,24 @@ app.use(
         callback(new Error('Not allowed by CORS'))
       }
     }
-  })
-);
+  }
+
+//{TBD change cors to include deployment origin of front end}
+// app.use(
+//   cors({
+//     allowedHeaders: ["Content-Type", "Authentication"],
+//     exposedHeaders: ["Content-Range", "Content-Type"],
+//     credentials: true,
+//     origin: process.env.CORS_ORIGIN,
+//   })
+// );
+
+app.use(cors(corsOptions))
 
 // enable pre-flight request
 app.options(
   "*",
-  cors({
-    allowedHeaders: ["Content-Type", "Authentication"],
-    exposedHeaders: ["Content-Range", "Content-Type"],
-    credentials: true,
-    // origin: process.env.CORS_ORIGIN,
-    origin: function (origin, callback) {
-      if (origin.startsWith(process.env.CORS_ORIGIN)) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    }
-  })
+  cors(corsOptions)
 );
 
 //Middleware To parse req.body
@@ -80,7 +76,7 @@ app.use(hpp());
 
 //TO compress response
 app.use(compression());
-console.log('In Routes')
+
 //Router level middleware
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/diaryentry", diaryEntryRouter);
