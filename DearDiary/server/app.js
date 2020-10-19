@@ -38,7 +38,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authentication"],
     exposedHeaders: ["Content-Range", "Content-Type"],
     credentials: true,
-    origin: [process.env.CORS_ORIGIN, 'https://polar-sands-07787.herokuapp.com/api/v1/users/getme', 'https://polar-sands-07787.herokuapp.com/api/v1/users/login'],
+    origin: [process.env.CORS_ORIGIN, 'https://thawing-wildwood-98378.herokuapp.com/api/v1/users/getme', 'https://thawing-wildwood-98378.herokuapp.com/api/v1/users/login'],
   })
 );
 
@@ -51,7 +51,7 @@ app.options(
     allowedHeaders: ["Content-Type", "Authentication"],
     exposedHeaders: ["Content-Range", "Content-Type"],
     credentials: true,
-    origin: [process.env.CORS_ORIGIN, 'https://polar-sands-07787.herokuapp.com/api/v1/users/getme', 'https://polar-sands-07787.herokuapp.com/api/v1/users/login'],
+    origin: [process.env.CORS_ORIGIN, 'https://thawing-wildwood-98378.herokuapp.com/api/v1/users/getme', 'https://thawing-wildwood-98378.herokuapp.com/api/v1/users/login'],
   })
 );
 
