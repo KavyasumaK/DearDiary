@@ -57,10 +57,10 @@ let corsOptions = {
 app.use(cors(corsOptions))
 
 // enable pre-flight request
-app.options(
-  "*",
-  cors(corsOptions)
-);
+// app.options(
+//   "*",
+//   cors(corsOptions)
+// );
 
 //Middleware To parse req.body
 app.use(express.json());
