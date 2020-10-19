@@ -15,7 +15,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const compression = require("compression");
+const compression = require('compression');
 
 const userRouter = require("./routes/userRoute");
 const diaryEntryRouter = require("./routes/diaryEntryRoute");
@@ -32,19 +32,39 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 
 //{TBD change cors to include deployment origin of front end}
-// app.use(
-//   cors({
-//     allowedHeaders: ["Content-Type", "Authentication"],
-//     exposedHeaders: ["Content-Range", "Content-Type"],
-//     credentials: true,
-//     origin: process.env.CORS_ORIGIN,
-//   })
-// );
-
-app.use(cors());
+app.use(
+  cors({
+    allowedHeaders: ["Content-Type", "Authentication"],
+    exposedHeaders: ["Content-Range", "Content-Type"],
+    credentials: true,
+    // origin: process.env.CORS_ORIGIN,
+    origin: function (origin, callback) {
+      if (origin.startsWith(process.env.CORS_ORIGIN)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  })
+);
 
 // enable pre-flight request
-app.options("*", cors());
+app.options(
+  "*",
+  cors({
+    allowedHeaders: ["Content-Type", "Authentication"],
+    exposedHeaders: ["Content-Range", "Content-Type"],
+    credentials: true,
+    // origin: process.env.CORS_ORIGIN,
+    origin: function (origin, callback) {
+      if (origin.startsWith(process.env.CORS_ORIGIN)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  })
+);
 
 //Middleware To parse req.body
 app.use(express.json());
@@ -60,7 +80,7 @@ app.use(hpp());
 
 //TO compress response
 app.use(compression());
-console.log("In Routes");
+console.log('In Routes')
 //Router level middleware
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/diaryentry", diaryEntryRouter);
