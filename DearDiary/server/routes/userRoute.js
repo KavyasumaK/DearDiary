@@ -6,18 +6,19 @@
  * **************************************/
 
 const router = require('express').Router(); 
+const cors = require('cors');
 
 const authController = require('../controller/authController');
 const userController = require('../controller/userController');
 
-router.post('/signup', authController.Register);
-router.post('/login', authController.login);  
-router.get('/logout', authController.logout);
+router.post('/signup',cors(), authController.Register);
+router.post('/login',cors(), authController.login);  
+router.get('/logout',cors(), authController.logout);
 // {TBD: forgot password}     
 
 //middleware to make sure all the rest of the paths are protected.
 router.use(authController.protectPath);
-router.get('/getme', userController.myProfile);
-router.patch("/updateme", userController.uploadUserPhoto, userController.resizeUserPhoto ,userController.updateMe);
-router.patch('/updatepassword', authController.updatePassword);
+router.get('/getme',cors(), userController.myProfile);
+router.patch("/updateme",cors(), userController.uploadUserPhoto, userController.resizeUserPhoto ,userController.updateMe);
+router.patch('/updatepassword',cors(), authController.updatePassword);
 module.exports = router;
