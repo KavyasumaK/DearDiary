@@ -32,7 +32,7 @@ const createAndSendJWT = (user, statusCode, req, res) => {
     ),
     //To make sure cookie is not tampered with in the browser
     httpOnly: true, 
-    secure: req.secure||req.headers['x-forward-proto']==='https',
+    secure: true,
     // secure=req.secure
     sameSite:'none',
   };
