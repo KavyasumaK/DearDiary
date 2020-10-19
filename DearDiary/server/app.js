@@ -42,7 +42,7 @@ app.use(
   })
 );
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 // enable pre-flight request
 app.options(
